@@ -1,0 +1,58 @@
+{
+  "manifest_version": 3,
+  "name": "__MSG_extName__",
+  "description": "__MSG_extDescription__",
+  "default_locale": "en",
+  "version": "3.92",
+  "minimum_chrome_version": "116",
+  "icons": {
+    "16": "icons/app-16.png",
+    "32": "icons/app-32.png",
+    "48": "icons/app-48.png",
+    "128": "icons/app-128.png"
+  },
+  "action": {
+    "default_title": "__MSG_actionTitle__",
+    "default_icon": {
+      "16": "icons/not-configured-16.png",
+      "32": "icons/not-configured-32.png",
+      "48": "icons/not-configured-48.png",
+      "128": "icons/not-configured-128.png"
+    },
+    "default_popup": "src/popup/index.html"
+  },
+  "background": {
+    "service_worker": "service-worker-loader.js",
+    "type": "module"
+  },
+  "permissions": [
+    "storage",
+    "tabs",
+    "webRequest",
+    "alarms",
+    "scripting",
+    "webNavigation"
+  ],
+  "host_permissions": [
+    "http://192.168.0.1/*",
+    "http://192.168.1.1/*",
+    "https://cloudflare-dns.com/*",
+    "https://dns.google/*",
+    "<all_urls>"
+  ],
+  "web_accessible_resources": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "resources": [
+        "icons/*.png"
+      ],
+      "use_dynamic_url": false
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'; base-uri 'self'; frame-ancestors 'none'"
+  },
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsOhMjGnL9NFNY5Ry80ZEF5GRaKTuHCaVaqZSgejtaryKp8rbWPDIy6611Maopu02IwUOO0wyliGYkGZwkTQNZUP/F6xiqXgGp87xa5fmbxTTEOVHroV5WgmPPkNyLzAfO9vTSogq62hMVMu+cjkWe/eHpP/Zg6O/tgsnpgfrBlL2qfSLchpKO5+EfSmWfhVIoiinLu9PFXdeljKUfBvcv54t1kOQf/AVNKCOv1abmq7CtPz5NL/WxQuj7W6MgVzeVCvtJ/pcgbQzc05PqrM0dOA3u9O38Wy1AQa7QdNVM1X/9LlC4vl9deYVV9yvntnVHZPseE1/CN/huIJ1l3NpkwIDAQAB"
+}

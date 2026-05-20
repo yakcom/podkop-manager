@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "Podkop Manager",
+    "description": "Extension name"
+  },
+  "extDescription": {
+    "message": "Manage Podkop domain and IPv4 routing lists on OpenWrt through the local Router API.",
+    "description": "Extension description"
+  },
+  "actionTitle": {
+    "message": "Podkop Manager",
+    "description": "Toolbar tooltip"
+  }
+}
