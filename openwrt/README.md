@@ -2,8 +2,6 @@
 
 Router-side API for **Podkop Manager**.
 
-Repository:
-
 ```text
 yakcom/podkop-manager
 ```
