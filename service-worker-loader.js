@@ -934,7 +934,7 @@ function buildExportPayload(states, disabled) {
   return {
     schema: 'podkop-manager.v3',
     app: 'Podkop Manager',
-    version: '3.92',
+    version: '3.93',
     exportedAt: new Date().toISOString(),
     library: {
       sites,

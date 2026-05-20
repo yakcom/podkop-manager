@@ -158,7 +158,7 @@ const t = (key, vars = {}) => {
   const dict = {
     'common.loading': 'Loading…',
     'setup.title': 'Podkop Manager',
-    'app.version': '3.92',
+    'app.version': '3.93',
     'setup.subtitle': 'Connect to your OpenWrt',
     'setup.step.auth.connect': 'Connect',
     'options.title': 'Settings',

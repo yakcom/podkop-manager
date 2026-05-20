@@ -1,41 +1,52 @@
-# Podkop Curator OpenWrt API
+# Podkop Manager · OpenWrt API
 
-Router-side API used by the Podkop Manager browser extension.
+Router-side API for **Podkop Manager**, published from:
 
-## Files
-
-- `podkop-curator.cgi` — router HTTP API endpoint
-- `install.sh` — one-command installer
-- `uninstall.sh` — one-command uninstaller
+```text
+yakcom/podkop-manager
+```
 
 ## Install
 
-Replace `OWNER/REPO` with your GitHub repo:
+SSH into your OpenWrt router and run:
 
 ```sh
-sh -c "$(wget -qO- https://raw.githubusercontent.com/OWNER/REPO/main/openwrt/install.sh)"
+sh -c "$(wget -qO- https://raw.githubusercontent.com/yakcom/podkop-manager/main/openwrt/install.sh)"
 ```
 
 If `wget` is unavailable:
 
 ```sh
-sh -c "$(uclient-fetch -qO- https://raw.githubusercontent.com/OWNER/REPO/main/openwrt/install.sh)"
+sh -c "$(uclient-fetch -qO- https://raw.githubusercontent.com/yakcom/podkop-manager/main/openwrt/install.sh)"
 ```
 
-The installer prints the generated token. Copy it into the browser extension settings.
+The installer downloads `podkop-curator.cgi`, installs it to:
+
+```text
+/www/cgi-bin/podkop-curator
+```
+
+and creates the API token at:
+
+```text
+/etc/podkop-curator/token
+```
+
+Copy the printed token into the browser extension settings.
 
 ## Uninstall
 
 ```sh
-sh -c "$(wget -qO- https://raw.githubusercontent.com/OWNER/REPO/main/openwrt/uninstall.sh)"
+sh -c "$(wget -qO- https://raw.githubusercontent.com/yakcom/podkop-manager/main/openwrt/uninstall.sh)"
 ```
 
-Uninstall removes only:
+Uninstall removes only the router API endpoint, token, and runtime lock. It does **not** remove Podkop and does **not** change Podkop UCI configuration.
+
+## Files
 
 ```text
-/www/cgi-bin/podkop-curator
-/etc/podkop-curator.token
-/tmp/podkop-curator.lock
+openwrt/
+  podkop-curator.cgi
+  install.sh
+  uninstall.sh
 ```
-
-It does not remove Podkop and does not change Podkop UCI config.

@@ -1,24 +1,16 @@
 #!/bin/sh
+# Compatibility wrapper. Prefer:
+# sh -c "$(wget -qO- https://raw.githubusercontent.com/yakcom/podkop-manager/main/openwrt/install.sh)"
 set -eu
 
-opkg update
-opkg install uhttpd
-
-mkdir -p /www/cgi-bin /etc/podkop-curator
-cp ./podkop-curator.cgi /www/cgi-bin/podkop-curator
-chmod 755 /www/cgi-bin/podkop-curator
-
-if [ ! -s /etc/podkop-curator/token ]; then
-  if command -v openssl >/dev/null 2>&1; then
-    openssl rand -hex 24 > /etc/podkop-curator/token
-  else
-    dd if=/dev/urandom bs=24 count=1 2>/dev/null | hexdump -ve '1/1 "%02x"' > /etc/podkop-curator/token
-  fi
-  chmod 600 /etc/podkop-curator/token
+BASE_URL="${BASE_URL:-https://raw.githubusercontent.com/yakcom/podkop-manager/main/openwrt}"
+if command -v uclient-fetch >/dev/null 2>&1; then
+  sh -c "$(uclient-fetch -qO- "$BASE_URL/install.sh")"
+elif command -v wget >/dev/null 2>&1; then
+  sh -c "$(wget -qO- "$BASE_URL/install.sh")"
+elif command -v curl >/dev/null 2>&1; then
+  sh -c "$(curl -fsSL "$BASE_URL/install.sh")"
+else
+  echo "ERROR: no downloader found: install uclient-fetch, wget or curl" >&2
+  exit 1
 fi
-
-/etc/init.d/uhttpd enable >/dev/null 2>&1 || true
-/etc/init.d/uhttpd restart
-
-echo "Installed: http://192.168.0.1/cgi-bin/podkop-curator"
-echo "Token: $(cat /etc/podkop-curator/token)"
