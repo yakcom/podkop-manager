@@ -21,47 +21,81 @@ if [ -t 1 ]; then
   C3="$(printf '\033[1;36m')"
   C4="$(printf '\033[1;32m')"
   CE="$(printf '\033[1;31m')"
+  SPINNER=1
 else
   C0=""; C1=""; C2=""; C3=""; C4=""; CE=""
+  SPINNER=0
 fi
 
 say() { printf '%s\n' "$*"; }
-line() { printf '%s\n' "${C2}────────────────────────────────────────${C0}"; }
-step() { printf '%s\n' "${C3}›${C0} $*"; }
-ok() { printf '%s\n' "${C4}✓${C0} $*"; }
-warn() { printf '%s\n' "${C2}! $*${C0}"; }
-die() { printf '%s\n' "${CE}✕ ERROR:${C0} $*" >&2; exit 1; }
+die() { printf '\n%s\n' "${CE}error:${C0} $*" >&2; exit 1; }
 
-banner() {
-  line
-  say "${C1}Podkop Manager${C0} ${C2}· OpenWrt router API${C0}"
-  say "${C2}yakcom/podkop-manager${C0}"
-  line
+title() {
+  printf '%s\n' "${C1}Podkop Manager${C0} ${C2}router API${C0}"
+}
+
+spin_run() {
+  label="$1"
+  shift
+  tmp="/tmp/podkop-curator-step.$$"
+  if [ "$SPINNER" = "1" ]; then
+    (
+      i=0
+      frames='|/-\'
+      while :; do
+        i=$(( (i + 1) % 4 ))
+        ch="$(printf '%s' "$frames" | cut -c $((i + 1)))"
+        printf '\r%s %s' "${C3}$ch${C0}" "$label"
+        sleep 0.12
+      done
+    ) &
+    spid="$!"
+    if "$@" >"$tmp" 2>&1; then
+      kill "$spid" >/dev/null 2>&1 || true
+      wait "$spid" 2>/dev/null || true
+      printf '\r%s %s\n' "${C4}✓${C0}" "$label"
+      rm -f "$tmp"
+      return 0
+    fi
+    kill "$spid" >/dev/null 2>&1 || true
+    wait "$spid" 2>/dev/null || true
+    printf '\r%s %s\n' "${CE}✕${C0}" "$label"
+    cat "$tmp" >&2
+    rm -f "$tmp"
+    return 1
+  fi
+
+  printf '%s\n' "› $label"
+  if "$@" >"$tmp" 2>&1; then
+    rm -f "$tmp"
+    return 0
+  fi
+  cat "$tmp" >&2
+  rm -f "$tmp"
+  return 1
 }
 
 need_root() {
-  [ "$(id -u)" = "0" ] || die "run this command as root on OpenWrt"
+  [ "$(id -u)" = "0" ] || die "run as root on OpenWrt"
 }
 
-fetch_to_stdout() {
+fetch_to_file() {
   url="$1"
+  out="$2"
   if command -v uclient-fetch >/dev/null 2>&1; then
-    uclient-fetch -qO- "$url"
+    uclient-fetch -qO "$out" "$url"
   elif command -v wget >/dev/null 2>&1; then
-    wget -qO- "$url"
+    wget -qO "$out" "$url"
   elif command -v curl >/dev/null 2>&1; then
-    curl -fsSL "$url"
+    curl -fsSL "$url" -o "$out"
   else
-    die "no downloader found: install uclient-fetch, wget or curl"
+    die "no downloader found: uclient-fetch, wget or curl required"
   fi
 }
 
-backup_existing() {
-  if [ -f "$CGI_PATH" ]; then
-    ts="$(date +%Y%m%d-%H%M%S 2>/dev/null || echo now)"
-    cp "$CGI_PATH" "$CGI_PATH.bak.$ts" || die "failed to backup existing CGI"
-    ok "Existing API backed up: $CGI_PATH.bak.$ts"
-  fi
+prepare_paths() {
+  [ -d /www/cgi-bin ] || mkdir -p /www/cgi-bin
+  [ -d "$CONFIG_DIR" ] || mkdir -p "$CONFIG_DIR"
 }
 
 make_token() {
@@ -79,51 +113,38 @@ make_token() {
   fi
 }
 
-install_api() {
-  banner
-  need_root
-  ok "Running as root"
-
-  step "Preparing OpenWrt paths"
-  [ -d /www/cgi-bin ] || mkdir -p /www/cgi-bin || die "failed to create /www/cgi-bin"
-  [ -d "$CONFIG_DIR" ] || mkdir -p "$CONFIG_DIR" || die "failed to create $CONFIG_DIR"
-  ok "Paths ready"
-
-  step "Preparing API token"
+prepare_token() {
   token="$(make_token)"
   umask 077
-  printf '%s\n' "$token" > "$TOKEN_PATH" || die "failed to write token file"
-  chmod 600 "$TOKEN_PATH" || true
-  ok "Token stored: $TOKEN_PATH"
-
-  tmp="/tmp/$APP_NAME.cgi.$$"
-  step "Fetching router API from GitHub"
-  fetch_to_stdout "$CGI_URL" > "$tmp" || { rm -f "$tmp"; die "download failed: $CGI_URL"; }
-  ok "Downloaded: $CGI_URL"
-
-  step "Verifying payload"
-  grep -q "podkop-curator" "$tmp" 2>/dev/null || {
-    rm -f "$tmp"
-    die "downloaded file does not look like podkop-curator.cgi"
-  }
-  sh -n "$tmp" || { rm -f "$tmp"; die "downloaded CGI has shell syntax errors"; }
-  ok "Shell syntax OK"
-
-  step "Installing router API"
-  backup_existing
-  mv "$tmp" "$CGI_PATH" || { rm -f "$tmp"; die "failed to install CGI"; }
-  chmod 755 "$CGI_PATH" || die "failed to chmod CGI"
-  rm -rf "$LOCK_PATH" 2>/dev/null || true
-  ok "Installed: $CGI_PATH"
-
-  line
-  say "${C1}Installation complete.${C0}"
-  say "${C2}Use this token in Podkop Manager:${C0}"
-  say ""
-  say "${C3}$token${C0}"
-  say ""
-  say "${C2}API endpoint:${C0} http://ROUTER_IP/cgi-bin/podkop-curator"
-  line
+  printf '%s\n' "$token" > "$TOKEN_PATH"
+  chmod 600 "$TOKEN_PATH" 2>/dev/null || true
 }
 
-install_api
+download_api() {
+  tmp="/tmp/$APP_NAME.cgi.$$"
+  fetch_to_file "$CGI_URL" "$tmp"
+  grep -q "podkop-curator" "$tmp"
+  sh -n "$tmp"
+}
+
+install_api_file() {
+  if [ -f "$CGI_PATH" ]; then
+    ts="$(date +%Y%m%d-%H%M%S 2>/dev/null || echo now)"
+    cp "$CGI_PATH" "$CGI_PATH.bak.$ts"
+  fi
+  mv "$tmp" "$CGI_PATH"
+  chmod 755 "$CGI_PATH"
+  rm -rf "$LOCK_PATH" 2>/dev/null || true
+}
+
+need_root
+title
+
+spin_run "Preparing OpenWrt paths" prepare_paths || die "path preparation failed"
+spin_run "Creating API token" prepare_token || die "token preparation failed"
+spin_run "Fetching router endpoint" download_api || { rm -f "${tmp:-}" 2>/dev/null || true; die "download or verification failed"; }
+spin_run "Installing endpoint" install_api_file || { rm -f "${tmp:-}" 2>/dev/null || true; die "installation failed"; }
+
+printf '\n%s\n' "${C1}Installed.${C0}"
+printf '%s\n' "${C2}Endpoint:${C0} http://ROUTER_IP/cgi-bin/podkop-curator"
+printf '%s\n' "${C2}Token:${C0} ${C3}$token${C0}"
