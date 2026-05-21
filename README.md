@@ -3,7 +3,7 @@
 
 # Podkop Manager
 
-**Browser extension for Podkop routing control on OpenWrt.**
+**Browser extension for Podkop routing control on OpenWrt**
 
 </div>
 
@@ -132,28 +132,3 @@ Read and edit the final OpenWrt lists:
 - IPv4/subnet list.
 
 Useful for verification, recovery, and manual control.
-
----
-
-## How It Works
-
-```text
-Browser tab
-   ↓
-Podkop Manager
-   ↓
-Domains / IPs / mode
-   ↓
-OpenWrt router API
-   ↓
-Podkop UCI lists
-```
-
----
-
-## Security Notes
-
-- Designed for **trusted LAN use only**.
-- Do not expose `/cgi-bin/podkop-curator` to the public internet.
-- The API is protected by a local token.
-- The extension stores the token locally in extension storage.
