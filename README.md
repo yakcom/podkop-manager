@@ -15,12 +15,12 @@
 
 **Podkop Manager** is a browser extension for managing **Podkop** routing directly from the current tab.
 
-It detects the active site, shows related domains and public IPv4 addresses, and syncs selected routing entries to OpenWrt through a small router-side API.
+It detects the active site, shows related domains and public IPv4 addresses, and syncs selected routing entries to OpenWrt.
 
 | Part | Role |
 |---|---|
 | **Browser extension** | UI, site detection, routing modes, local state, sync. |
-| **OpenWrt API** | Token-protected CGI endpoint for writing Podkop UCI lists. |
+| **OpenWrt API** | Token-protected router endpoint for writing Podkop routing lists. |
 
 ---
 
@@ -59,12 +59,6 @@ Copy the token. You will need it in the extension setup screen.
 6. Open the extension popup.
 7. Enter your OpenWrt gateway and token.
 8. Click **Connect**.
-
-Default router API endpoint:
-
-```text
-http://192.168.0.1/cgi-bin/podkop-curator
-```
 
 ---
 
@@ -139,16 +133,6 @@ Read and edit the final OpenWrt lists:
 
 Useful for verification, recovery, and manual control.
 
-### Safe synchronization
-
-During sync:
-
-- the popup is locked;
-- repeated actions are blocked;
-- a lightweight cursor indicator is shown;
-- router writes are queued;
-- the OpenWrt API uses a runtime lock.
-
 ---
 
 ## How It Works
@@ -165,35 +149,6 @@ OpenWrt router API
 Podkop UCI lists
 ```
 
-No native messaging is required. The extension talks to the router API over the local network.
-
----
-
-## OpenWrt API
-
-Router endpoint:
-
-```text
-/www/cgi-bin/podkop-curator
-```
-
-Token path:
-
-```text
-/etc/podkop-curator/token
-```
-
-The API is a small POSIX shell CGI script for OpenWrt/BusyBox. It accepts `POST` requests, validates the token, updates Podkop UCI values, and returns JSON.
-
-Supported operations:
-
-- connection test;
-- status read;
-- list replacement;
-- Podkop control actions;
-- diagnostics;
-- safe restart handling.
-
 ---
 
 ## Security Notes
@@ -202,77 +157,3 @@ Supported operations:
 - Do not expose `/cgi-bin/podkop-curator` to the public internet.
 - The API is protected by a local token.
 - The extension stores the token locally in extension storage.
-
----
-
-## Project Structure
-
-```text
-podkop-manager/
-├── manifest.json
-├── service-worker-loader.js
-├── src/
-│   └── popup/
-│       └── index.html
-├── assets/
-│   ├── popup-*.js
-│   └── popup-*.css
-├── icons/
-├── openwrt/
-│   ├── podkop-curator.cgi
-│   ├── install.sh
-│   ├── uninstall.sh
-│   └── install-openwrt.sh
-├── README.md
-└── README.ru.md
-```
-
----
-
-## Troubleshooting
-
-### `OpenWrt API is not installed`
-
-The router is reachable, but the API endpoint is missing.
-
-```sh
-sh -c "$(wget -qO- https://raw.githubusercontent.com/yakcom/podkop-manager/main/openwrt/install.sh)"
-```
-
-### `Invalid token`
-
-The extension token does not match the router token.
-
-```sh
-cat /etc/podkop-curator/token
-```
-
-### `OpenWrt not found`
-
-Check the router address and local network connectivity.
-
-Default endpoint:
-
-```text
-http://192.168.0.1/cgi-bin/podkop-curator
-```
-
-### Manual API test
-
-```sh
-curl -X POST "http://192.168.0.1/cgi-bin/podkop-curator" \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  --data "token=<token>&action=test"
-```
-
-Expected response:
-
-```json
-{"ok":true,"message":"Router API OK"}
-```
-
----
-
-## Release
-
-**Podkop Manager 1.0** is the first production-level release.
