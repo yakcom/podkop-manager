@@ -1,9 +1,9 @@
-<p align="center"><img  width="200" src="https://github.com/yakcom/podkop-manager/blob/main/icons/icon.png"/></p>
+<p align="center"><img width="200" src="https://github.com/yakcom/podkop-manager/blob/main/icons/icon.png"/></p>
 <div align="center">
 
 # Podkop Manager
 
-**Browser extension for Podkop routing control for OpenWrt.**
+**Browser extension for Podkop routing control on OpenWrt.**
 
 </div>
 
@@ -13,16 +13,14 @@
 
 ## Overview
 
-**Podkop Manager** is a browser-side control panel for **Podkop on OpenWrt**. It detects the active website, resolves related hosts and public IPv4 addresses, collects request domains from the current tab, and lets you decide how that traffic should be handled by Podkop.
+**Podkop Manager** is a browser extension for managing **Podkop** routing directly from the current tab.
 
-The project has two parts:
+It detects the active site, shows related domains and public IPv4 addresses, and syncs selected routing entries to OpenWrt through a small router-side API.
 
 | Part | Role |
 |---|---|
-| **Browser extension** | Detects the current site, manages routing modes, stores local state, and synchronizes routing lists. |
-| **OpenWrt router API** | A small token-protected CGI endpoint that writes Podkop UCI lists and applies changes on the router. |
-
-The extension treats OpenWrt routing lists as a projection of its local state: it builds clean final domain/IP lists, removes duplicates, applies global exclusions, and sends the resulting lists to the router safely.
+| **Browser extension** | UI, site detection, routing modes, local state, sync. |
+| **OpenWrt API** | Token-protected CGI endpoint for writing Podkop UCI lists. |
 
 ---
 
@@ -59,7 +57,7 @@ Copy the token. You will need it in the extension setup screen.
 4. Click **Load unpacked**.
 5. Select the unpacked `podkop-manager` folder.
 6. Open the extension popup.
-7. Enter your OpenWrt gateway and the installer token.
+7. Enter your OpenWrt gateway and token.
 8. Click **Connect**.
 
 Default router API endpoint:
@@ -84,73 +82,72 @@ Expected output:
 Podkop Manager: removed
 ```
 
-Uninstall removes only the extension API endpoint, token, and runtime lock. It does **not** remove Podkop and does **not** modify your Podkop configuration.
+This removes only the API endpoint, token, and runtime lock. Podkop and its UCI configuration stay untouched.
 
 ---
 
 ## Features
 
-### Tab-aware routing
+### Tab-aware control
 
-Podkop Manager works from the active browser tab. It identifies the current website and builds routing entries from:
+Podkop Manager works with the active tab and can use:
 
-- the main origin;
-- the current hostname;
-- resolved public IPv4 addresses;
-- domains observed in page requests;
-- request-related IP addresses;
-- manually added routing entries.
+- main origin;
+- current hostname;
+- public IPv4 addresses;
+- request domains;
+- manually added entries.
 
 ### Routing modes
 
 | Mode | Description |
 |---|---|
-| **Direct** | Excludes the site or entry from proxy routing. |
-| **Base** | Adds the core site entries to Podkop routing lists. |
-| **Deep** | Adds the site plus related request domains/IPs for more complete routing coverage. |
+| **Direct** | Exclude from proxy routing. |
+| **Base** | Route the core site entries. |
+| **Deep** | Route the site with related request domains/IPs. |
 
 ### Routing scope
 
 | Scope | Description |
 |---|---|
-| **domains** | Sync only domain entries. |
-| **ips** | Sync only public IPv4 entries. |
-| **domains + ips** | Sync both domains and public IPv4 entries. |
+| **domains** | Domains only. |
+| **ips** | Public IPv4 entries only. |
+| **domains + ips** | Domains and public IPv4 entries. |
 
 ### Global exclusions
 
-Any domain or IP can be excluded globally. Excluded entries are shown as inactive in the UI and are removed from the final proxied routing lists.
+Any domain or IP can be excluded globally. Excluded entries are shown as inactive and are not synced to proxied lists.
 
 ### Overview
 
-The **Overview** screen provides a clean routing library:
+The **Overview** screen includes:
 
 - proxied sites;
 - direct exclusions;
-- domain and IP counters;
+- domain/IP counters;
 - expandable site cards;
 - manual Direct entries;
-- import/export workflow;
+- import/export;
 - router list editor.
 
 ### Router lists
 
-The extension can read and edit the final lists stored on OpenWrt:
+Read and edit the final OpenWrt lists:
 
 - domain list;
 - IPv4/subnet list.
 
-This is useful for verification, recovery, and advanced manual control.
+Useful for verification, recovery, and manual control.
 
 ### Safe synchronization
 
-During synchronization:
+During sync:
 
-- the popup is softly locked;
+- the popup is locked;
 - repeated actions are blocked;
-- a lightweight animated cursor indicator is shown;
-- router updates are queued to avoid parallel writes;
-- the OpenWrt endpoint uses a runtime lock while applying changes.
+- a lightweight cursor indicator is shown;
+- router writes are queued;
+- the OpenWrt API uses a runtime lock.
 
 ---
 
@@ -159,20 +156,16 @@ During synchronization:
 ```text
 Browser tab
    ↓
-Podkop Manager extension
+Podkop Manager
    ↓
-Local state + request/DNS analysis
-   ↓
-Final domain/IP routing lists
+Domains / IPs / mode
    ↓
 OpenWrt router API
    ↓
-Podkop UCI config
-   ↓
-Podkop restart/apply
+Podkop UCI lists
 ```
 
-The extension does not require native messaging. It communicates directly with the OpenWrt router API over the local network.
+No native messaging is required. The extension talks to the router API over the local network.
 
 ---
 
@@ -190,26 +183,25 @@ Token path:
 /etc/podkop-curator/token
 ```
 
-The API is a small POSIX shell CGI script designed for OpenWrt/BusyBox environments. It accepts `POST` requests, validates the token, reads/writes Podkop UCI values, and returns JSON responses.
+The API is a small POSIX shell CGI script for OpenWrt/BusyBox. It accepts `POST` requests, validates the token, updates Podkop UCI values, and returns JSON.
 
-Supported high-level operations include:
+Supported operations:
 
 - connection test;
 - status read;
-- authoritative list replacement;
+- list replacement;
 - Podkop control actions;
-- global diagnostics;
+- diagnostics;
 - safe restart handling.
 
 ---
 
 ## Security Notes
 
-- The router API is intended for **trusted LAN use only**.
+- Designed for **trusted LAN use only**.
 - Do not expose `/cgi-bin/podkop-curator` to the public internet.
-- The API is protected with a local token stored at `/etc/podkop-curator/token`.
-- The installer writes the token with restrictive permissions when possible.
-- The browser extension stores the token locally in extension storage.
+- The API is protected by a local token.
+- The extension stores the token locally in extension storage.
 
 ---
 
@@ -241,7 +233,7 @@ podkop-manager/
 
 ### `OpenWrt API is not installed`
 
-The extension reached the router, but the API endpoint is missing. Install the router API again:
+The router is reachable, but the API endpoint is missing.
 
 ```sh
 sh -c "$(wget -qO- https://raw.githubusercontent.com/yakcom/podkop-manager/main/openwrt/install.sh)"
@@ -249,9 +241,7 @@ sh -c "$(wget -qO- https://raw.githubusercontent.com/yakcom/podkop-manager/main/
 
 ### `Invalid token`
 
-The token entered in the extension does not match the token stored on the router.
-
-Show the router token:
+The extension token does not match the router token.
 
 ```sh
 cat /etc/podkop-curator/token
@@ -259,15 +249,15 @@ cat /etc/podkop-curator/token
 
 ### `OpenWrt not found`
 
-Check that the router address is correct and reachable from the browser machine.
+Check the router address and local network connectivity.
 
-Default address:
+Default endpoint:
 
 ```text
 http://192.168.0.1/cgi-bin/podkop-curator
 ```
 
-### Check API manually
+### Manual API test
 
 ```sh
 curl -X POST "http://192.168.0.1/cgi-bin/podkop-curator" \
@@ -285,4 +275,4 @@ Expected response:
 
 ## Release
 
-**Podkop Manager 1.0** is the first production-level release of the project.
+**Podkop Manager 1.0** is the first production-level release.
