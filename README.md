@@ -5,12 +5,6 @@
 
 **Browser extension for Podkop routing control for OpenWrt.**
 
-<p>
-  <img alt="Version" src="https://img.shields.io/badge/version-1.0-8a8a8a?style=flat-square">
-  <img alt="Chrome MV3" src="https://img.shields.io/badge/Chrome-MV3-8a8a8a?style=flat-square">
-  <img alt="OpenWrt" src="https://img.shields.io/badge/OpenWrt-router%20API-8a8a8a?style=flat-square">
-</p>
-
 </div>
 
 
