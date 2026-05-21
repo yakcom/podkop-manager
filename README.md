@@ -19,10 +19,8 @@ It detects the active site, shows related domains and public IPv4 addresses, and
 
 ---
 <p align="center">
-<div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px;">
-    <img src="https://github.com/yakcom/podkop-manager/blob/main/icons/screen_0.png" >
-    <img src="https://github.com/yakcom/podkop-manager/blob/main/icons/screen_5.png" >
-</div>
+  <img src="https://raw.githubusercontent.com/yakcom/podkop-manager/main/icons/screen_0.png" width="45%">
+  <img src="https://raw.githubusercontent.com/yakcom/podkop-manager/main/icons/screen_5.png" width="45%">
 </p>
 ---
 
