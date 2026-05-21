@@ -1,3 +1,4 @@
+<p align="center"><img  width="200" src="https://github.com/yakcom/podkop-manager/blob/main/icon.png"/></p>
 <div align="center">
 
 # Podkop Manager
