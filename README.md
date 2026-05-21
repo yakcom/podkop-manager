@@ -22,6 +22,7 @@ It detects the active site, shows related domains and public IPv4 addresses, and
   <img src="https://raw.githubusercontent.com/yakcom/podkop-manager/main/icons/screen_0.png" width="45%">
   <img src="https://raw.githubusercontent.com/yakcom/podkop-manager/main/icons/screen_5.png" width="45%">
 </p>
+
 ---
 
 ## Quick Start
@@ -37,6 +38,7 @@ sh -c "$(wget -qO- https://raw.githubusercontent.com/yakcom/podkop-manager/main/
 If your OpenWrt image does not include `wget`, use:
 
 ```sh
+
 sh -c "$(uclient-fetch -qO- https://raw.githubusercontent.com/yakcom/podkop-manager/main/openwrt/install.sh)"
 ```
 
