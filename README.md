@@ -3,9 +3,7 @@
 
 # Podkop Manager
 
-**Tab-aware Podkop routing control for OpenWrt.**
-
-A minimal browser extension for managing Podkop routing lists from the current tab through a lightweight OpenWrt router API.
+**Browser extension for Podkop routing control for OpenWrt.**
 
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-1.0-8a8a8a?style=flat-square">
