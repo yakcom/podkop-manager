@@ -18,12 +18,12 @@
 It detects the active site, shows related domains and public IPv4 addresses, and syncs selected routing entries to OpenWrt.
 
 ---
-
+<p align="center">
 <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px;">
     <img src="https://github.com/yakcom/podkop-manager/blob/main/icons/screen_0.png" >
     <img src="https://github.com/yakcom/podkop-manager/blob/main/icons/screen_5.png" >
 </div>
-
+</p>
 ---
 
 ## Quick Start
