@@ -7,7 +7,9 @@
 
 </div>
 
-
+<p align="center">
+  <a href="README.md">English</a> · <a href="README.ru.md">Русский</a>
+</p>
 
 ## Overview
 
@@ -66,7 +68,11 @@ Default router API endpoint:
 http://192.168.0.1/cgi-bin/podkop-curator
 ```
 
-### 3. Uninstall the router API
+---
+
+## Uninstall
+
+### Remove the router API
 
 ```sh
 sh -c "$(wget -qO- https://raw.githubusercontent.com/yakcom/podkop-manager/main/openwrt/uninstall.sh)"
@@ -225,7 +231,8 @@ podkop-manager/
 │   ├── install.sh
 │   ├── uninstall.sh
 │   └── install-openwrt.sh
-└── README.md
+├── README.md
+└── README.ru.md
 ```
 
 ---
