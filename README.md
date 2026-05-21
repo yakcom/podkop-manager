@@ -26,7 +26,6 @@ It detects the active site, shows related domains and public IPv4 addresses, and
     <img src="https://github.com/yakcom/podkop-manager/blob/main/icons/screen_1.png" style="width: 32%;">
     <img src="https://github.com/yakcom/podkop-manager/blob/main/icons/screen_2.png" style="width: 32%;">
     <img src="https://github.com/yakcom/podkop-manager/blob/main/icons/screen_3.png" style="width: 32%;">
-    <img src="https://github.com/yakcom/podkop-manager/blob/main/icons/screen_4.png" style="width: 32%;">
 </div>
 
 ---
