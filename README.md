@@ -23,12 +23,10 @@ It detects the active site, shows related domains and public IPv4 addresses, and
 | **OpenWrt API** | Token-protected router endpoint for writing Podkop routing lists. |
 
 <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px;">
-    <img src="https://github.com/yakcom/Sunfox/blob/main/.github/wheel.png" alt="Описание 3" style="width: 32%;">
-    <img src="https://github.com/yakcom/Sunfox/blob/main/.github/launchpad.png" style="width: 32%;">
-    <img src="https://github.com/yakcom/Sunfox/blob/main/.github/blackjack.png" style="width: 32%;">
-    <img src="https://github.com/yakcom/Sunfox/blob/main/.github/hort.png" style="width: 32%;">
-    <img src="https://github.com/yakcom/Sunfox/blob/main/.github/rps.png" style="width: 32%;">
-    <img src="https://github.com/yakcom/Sunfox/blob/main/.github/rps2.png" style="width: 32%;">
+    <img src="https://github.com/yakcom/podkop-manager/blob/main/icons/screen_1.png" style="width: 32%;">
+    <img src="https://github.com/yakcom/podkop-manager/blob/main/icons/screen_2.png" style="width: 32%;">
+    <img src="https://github.com/yakcom/podkop-manager/blob/main/icons/screen_3.png" style="width: 32%;">
+    <img src="https://github.com/yakcom/podkop-manager/blob/main/icons/screen_4.png" style="width: 32%;">
 </div>
 
 ---
