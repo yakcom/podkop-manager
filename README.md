@@ -17,10 +17,7 @@
 
 It detects the active site, shows related domains and public IPv4 addresses, and syncs selected routing entries to OpenWrt.
 
-| Part | Role |
-|---|---|
-| **Browser extension** | UI, site detection, routing modes, local state, sync. |
-| **OpenWrt API** | Token-protected router endpoint for writing Podkop routing lists. |
+---
 
 <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px;">
     <img src="https://github.com/yakcom/podkop-manager/blob/main/icons/screen_0.png" >
