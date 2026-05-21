@@ -8,6 +8,7 @@
 </div>
 
 
+
 ## Overview
 
 **Podkop Manager** is a browser-side control panel for **Podkop on OpenWrt**. It detects the active website, resolves related hosts and public IPv4 addresses, collects request domains from the current tab, and lets you decide how that traffic should be handled by Podkop.
