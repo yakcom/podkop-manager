@@ -44,6 +44,80 @@ let importPendingName = '';
 let importConfirmOpen = false;
 let importOk = false;
 
+const uiState = {
+  view: 'main',
+  busy: false,
+  sync: { active: false, kind: null, target: null, startedAt: null },
+  setup: {},
+  library: {},
+  routerLists: {},
+  control: {},
+  cursor: { x: Math.round(window.innerWidth / 2), y: Math.round(window.innerHeight / 2) }
+};
+
+function syncLegacyUiState() {
+  uiState.view = view;
+  uiState.busy = Boolean(busy || libraryBusy || routerListsBusy || controlBusy || libraryAddBusyTarget);
+  uiState.sync.active = isGlobalSyncLocked();
+  uiState.sync.kind = pendingEntrySync?.kind || routerListAction || controlAction || (libraryAddBusyTarget ? 'library' : null);
+  uiState.sync.target = pendingEntrySync?.value || routerListAction || controlAction || libraryAddBusyTarget || null;
+  if (uiState.sync.active && !uiState.sync.startedAt) uiState.sync.startedAt = Date.now();
+  if (!uiState.sync.active) uiState.sync.startedAt = null;
+  uiState.cursor = { x: syncCursorX, y: syncCursorY };
+}
+
+function normalizeUiError(message) {
+  const text = String(message || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+  const low = text.toLowerCase();
+  if (low.includes('404') || low.includes('not found')) return 'OpenWrt API is not installed';
+  if (low.includes('invalid token') || low.includes('forbidden')) return 'Invalid token';
+  if (low.includes('token file') || low.includes('uci command') || low.includes('uci config podkop')) return 'Router API is not configured';
+  if (low.includes('podkop restart failed') || low.includes('restart failed')) return 'Podkop restart failed';
+  if (low.includes('failed to fetch') || low.includes('networkerror') || low.includes('load failed') || low.includes('aborterror') || low.includes('signal is aborted')) return 'OpenWrt not found';
+  return text || 'OpenWrt sync failed';
+}
+
+async function withRouterSync(label, task, options = {}) {
+  if (isGlobalSyncLocked() && !options.allowNested) return null;
+  const previous = { busy, libraryBusy, routerListsBusy, controlBusy, pendingEntrySync, routerListAction, controlAction };
+  try {
+    const target = options.target || label || 'sync';
+    if (options.area === 'library') libraryBusy = true;
+    else if (options.area === 'routerLists') routerListsBusy = true;
+    else if (options.area === 'control') controlBusy = true;
+    else busy = true;
+    if (options.entry) pendingEntrySync = options.entry;
+    if (options.routerListAction) routerListAction = options.routerListAction;
+    if (options.controlAction) controlAction = options.controlAction;
+    uiState.sync = { active: true, kind: label || 'sync', target, startedAt: Date.now() };
+    setSyncStatus('syncing');
+    applyGlobalSyncLock();
+    if (options.render !== false) render();
+    const result = await task();
+    setSyncStatus('ok', options.okMs || 1050);
+    return result;
+  } catch (e) {
+    const message = normalizeUiError(e.message || e);
+    setSyncStatus('error', options.errorMs || 1800);
+    if (options.onError) options.onError(message, e);
+    else consoleLines = [...consoleLines, { at: Date.now(), level: 'error', channel: 'router', text: message }].slice(-200);
+    throw new Error(message);
+  } finally {
+    if (options.restore !== false) {
+      busy = previous.busy;
+      libraryBusy = previous.libraryBusy;
+      routerListsBusy = previous.routerListsBusy;
+      controlBusy = previous.controlBusy;
+      pendingEntrySync = previous.pendingEntrySync;
+      routerListAction = previous.routerListAction;
+      controlAction = previous.controlAction;
+    }
+    uiState.sync = { active: false, kind: null, target: null, startedAt: null };
+    applyGlobalSyncLock();
+    if (options.finalRender) render();
+  }
+}
+
 const app = document.getElementById('app');
 const DEFAULT_ROUTER_URL = 'http://192.168.0.1/cgi-bin/podkop-curator';
 
@@ -86,12 +160,14 @@ function removeSyncCursorBadge() {
 function updateSyncCursorBadge(x = syncCursorX, y = syncCursorY) {
   syncCursorX = x;
   syncCursorY = y;
+  uiState.cursor = { x: syncCursorX, y: syncCursorY };
   if (!syncCursorBadge) return;
   syncCursorBadge.style.transform = `translate3d(${Math.round(syncCursorX - 11)}px, ${Math.round(syncCursorY - 11)}px, 0)`;
 }
 
 function applyGlobalSyncLock() {
-  const locked = isGlobalSyncLocked();
+  syncLegacyUiState();
+  const locked = uiState.sync.active;
   document.documentElement.classList.toggle('pm-sync-locked', locked);
   document.querySelectorAll('.popup').forEach(node => node.classList.toggle('pm-sync-locked', locked));
   if (locked) ensureSyncCursorBadge();
@@ -158,7 +234,7 @@ const t = (key, vars = {}) => {
   const dict = {
     'common.loading': 'Loading…',
     'setup.title': 'Podkop Manager',
-    'app.version': '3.96',
+    'app.version': '1.0',
     'setup.subtitle': 'Connect to your OpenWrt',
     'setup.step.auth.connect': 'Connect',
     'options.title': 'Settings',
@@ -272,7 +348,7 @@ async function loadLibrary() {
   libraryBusy = true;
   libraryError = '';
   try { library = await send({ type: 'GET_LOCAL_LIBRARY' }); }
-  catch (e) { libraryError = String(e.message || e); }
+  catch (e) { libraryError = normalizeUiError(e.message || e); }
   libraryBusy = false;
 }
 async function loadRouterLists() {
@@ -285,7 +361,7 @@ async function loadRouterLists() {
       subnets: (routerLists.rawSubnets || routerLists.subnets || []).join('\n')
     };
   } catch (e) {
-    libraryError = String(e.message || e);
+    libraryError = normalizeUiError(e.message || e);
   }
   routerListsBusy = false;
 }
@@ -314,7 +390,7 @@ function normalizeSetupError(message) {
     low.includes('load failed') ||
     low.includes('router api test failed')
   ) return 'OpenWrt not found';
-  return text || 'Setup failed';
+  return normalizeUiError(text || 'Setup failed');
 }
 
 function escapeHtml(s) { return String(s ?? '').replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c])); }
@@ -423,7 +499,7 @@ async function loadControl() {
   controlError = '';
   controlOk = '';
   try { controlData = await send({ type: 'GET_ROUTER_CONTROL' }); }
-  catch (e) { controlError = String(e.message || e); }
+  catch (e) { controlError = normalizeUiError(e.message || e); }
   controlBusy = false;
 }
 
@@ -631,7 +707,7 @@ async function runRouterMutation(applyOptimistic, task) {
     clearLiveEntryWave();
     applyGlobalSyncLock();
     setSyncStatus('error', 1800);
-    consoleLines = [...consoleLines, { at: Date.now(), level: 'error', channel: 'router', text: String(e.message || e) }].slice(-200);
+    consoleLines = [...consoleLines, { at: Date.now(), level: 'error', channel: 'router', text: normalizeUiError(e.message || e) }].slice(-200);
     render();
   }
 }
@@ -758,7 +834,7 @@ async function runEntryToggleMutation(el, kind, value, insideRequests = false) {
     busy = false;
     pendingEntrySync = null;
     setSyncStatus('error', 1800);
-    consoleLines = [...consoleLines, { at: Date.now(), level: 'error', channel: 'router', text: String(e.message || e) }].slice(-200);
+    consoleLines = [...consoleLines, { at: Date.now(), level: 'error', channel: 'router', text: normalizeUiError(e.message || e) }].slice(-200);
     render();
   }
 }
@@ -976,7 +1052,7 @@ function bindEvents() {
         }
       }
     } catch (e) {
-      controlError = String(e.message || e);
+      controlError = normalizeUiError(e.message || e);
     }
     controlBusy = false;
     controlAction = '';
@@ -1147,14 +1223,14 @@ function bindEvents() {
       render();
       await new Promise(resolve => setTimeout(resolve, 850));
     } catch (e) {
-      libraryError = String(e.message || e);
+      libraryError = normalizeUiError(e.message || e);
     }
     routerSaveOk = false;
     routerListAction = '';
     routerListsBusy = false;
     render();
   });
-  document.getElementById('exportLibrary')?.addEventListener('click', async () => { if (busy) return; try { await exportLibraryFile(); libraryStatus = 'Exported'; render(); } catch (e) { libraryError = String(e.message || e); render(); } });
+  document.getElementById('exportLibrary')?.addEventListener('click', async () => { if (busy) return; try { await exportLibraryFile(); libraryStatus = 'Exported'; render(); } catch (e) { libraryError = normalizeUiError(e.message || e); render(); } });
   document.getElementById('importLibrary')?.addEventListener('click', () => { if (!busy && !libraryBusy) document.getElementById('importLibraryFile')?.click(); });
   document.getElementById('importLibraryFile')?.addEventListener('change', async (e) => {
     const file = e.target.files?.[0];

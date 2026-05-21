@@ -4,7 +4,7 @@
     "description": "Extension name"
   },
   "extDescription": {
-    "message": "Manage Podkop domain and IPv4 routing lists on OpenWrt through the local Router API.",
+    "message": "Tab-aware Podkop routing control for OpenWrt through a lightweight router API.",
     "description": "Extension description"
   },
   "actionTitle": {

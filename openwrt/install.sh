@@ -25,7 +25,11 @@ else
   C0=""; C_DIM=""; C_NAME=""; C_OK=""; C_TOKEN=""; C_ERR=""
 fi
 
-die() { printf '%s\n' "${C_ERR}Podkop Manager: error${C0}" >&2; printf '%s\n' "$*" >&2; exit 1; }
+die() {
+  printf '%s\n' "${C_ERR}Podkop Manager: error${C0}" >&2
+  printf '%s\n' "$*" >&2
+  exit 1
+}
 
 fetch_to_file() {
   url="$1"

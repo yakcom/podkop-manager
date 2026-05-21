@@ -16,7 +16,11 @@ else
   C0=""; C_NAME=""; C_OK=""; C_ERR=""
 fi
 
-die() { printf '%s\n' "${C_ERR}Podkop Manager: error${C0}" >&2; printf '%s\n' "$*" >&2; exit 1; }
+die() {
+  printf '%s\n' "${C_ERR}Podkop Manager: error${C0}" >&2
+  printf '%s\n' "$*" >&2
+  exit 1
+}
 
 [ "$(id -u)" = "0" ] || die "run as root on OpenWrt"
 

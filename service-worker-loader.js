@@ -8,7 +8,7 @@ const DEFAULT_SETTINGS = {
   profileScope: { default: 'both' },
   theme: 'dark',
   locale: 'en',
-  schemaVersion: '3.64'
+  schemaVersion: '1.0.0'
 };
 
 const COMMON_SECOND_LEVEL_SUFFIXES = new Set([
@@ -39,7 +39,7 @@ async function getSettings() {
 
 async function patchSettings(patch) {
   const current = await getSettings();
-  const next = { ...current, ...patch, schemaVersion: '3.64' };
+  const next = { ...current, ...patch, schemaVersion: '1.0.0' };
   next.routerUrl = String(next.routerUrl || '').trim() || DEFAULT_SETTINGS.routerUrl;
   next.routerToken = String(next.routerToken || '').trim();
   if (!Array.isArray(next.profiles) || next.profiles.length === 0) next.profiles = ['default'];
@@ -438,44 +438,135 @@ function formPart(key, value) {
   return `${key}=${v.replace(/%/g, '%25').replace(/&/g, '%26').replace(/=/g, '%3D').replace(/[\r\n]+/g, '|')}`;
 }
 
+function stripHtmlForRouterError(text) {
+  return String(text || '')
+    .replace(/<script[\s\S]*?<\/script>/gi, ' ')
+    .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&nbsp;/gi, ' ')
+    .replace(/&amp;/gi, '&')
+    .replace(/&lt;/gi, '<')
+    .replace(/&gt;/gi, '>')
+    .replace(/&quot;/gi, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function normalizeRouterErrorMessage(input, status = 0, action = '') {
+  const text = stripHtmlForRouterError(input);
+  const low = text.toLowerCase();
+  const normalizedAction = String(action || '').trim();
+
+  if (status === 404 || low.includes('404 not found') || low.includes('not found')) return 'OpenWrt API is not installed';
+  if (status === 401 || status === 403 || low.includes('invalid token') || low.includes('forbidden')) return 'Invalid token';
+  if (low.includes('token file') || low.includes('uci command not found') || low.includes('uci config podkop not found')) return 'Router API is not configured';
+  if (normalizedAction === 'restartPodkop' || low.includes('restart failed') || low.includes('podkop restart failed')) return 'Podkop restart failed';
+  if (low.includes('failed to fetch') || low.includes('networkerror') || low.includes('network error') || low.includes('load failed') || low.includes('aborterror') || low.includes('signal is aborted') || low.includes('timed out')) return 'OpenWrt not found';
+  if (status >= 500 && !text) return 'Router API is not configured';
+  if (status >= 400 && !text) return `Router API error ${status}`;
+  return text || 'OpenWrt sync failed';
+}
+
+function normalizeRouterError(error, status = 0, action = '') {
+  const e = error instanceof Error ? error : new Error(String(error || 'OpenWrt sync failed'));
+  e.message = normalizeRouterErrorMessage(e.message, status, action);
+  e.code = e.code || 'router_error';
+  return e;
+}
+
+function encodeRouterFormValue(value) {
+  if (Array.isArray(value)) return value.join('|');
+  return String(value || '');
+}
+
+function buildRouterForm(payload, settings) {
+  const form = new URLSearchParams();
+  form.set('token', settings.routerToken);
+  form.set('action', payload.action || 'apply');
+  form.set('addDomains', encodeRouterFormValue(payload.addDomains || []));
+  form.set('addSubnets', encodeRouterFormValue(payload.addSubnets || []));
+  form.set('removeDomains', encodeRouterFormValue(payload.removeDomains || []));
+  form.set('removeSubnets', encodeRouterFormValue(payload.removeSubnets || []));
+  form.set('setDomains', encodeRouterFormValue(payload.setDomains || ''));
+  form.set('setSubnets', encodeRouterFormValue(payload.setSubnets || ''));
+  return form.toString().replace(/%0D%0A|%0A|%0D/gi, '%7C');
+}
+
 async function sendRouter(payload) {
   const settings = await getSettings();
+  const action = payload?.action || 'apply';
   if (!settings.configured) throw new Error('Router API is not configured');
-  const body = [
-    formPart('token', settings.routerToken),
-    formPart('action', payload.action || 'apply'),
-    formPart('addDomains', payload.addDomains || []),
-    formPart('addSubnets', payload.addSubnets || []),
-    formPart('removeDomains', payload.removeDomains || []),
-    formPart('removeSubnets', payload.removeSubnets || []),
-    formPart('setDomains', payload.setDomains || ''),
-    formPart('setSubnets', payload.setSubnets || '')
-  ].join('&');
+
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 45000);
   let res;
+  let text = '';
+
   try {
-    res = await fetch(settings.routerUrl, { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }, body, signal: controller.signal });
-  } finally { clearTimeout(timeout); }
-  const text = await res.text();
+    res = await fetch(settings.routerUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+      body: buildRouterForm(payload || {}, settings),
+      signal: controller.signal
+    });
+    text = await res.text();
+  } catch (e) {
+    throw normalizeRouterError(e, 0, action);
+  } finally {
+    clearTimeout(timeout);
+  }
+
   let data;
-  try { data = JSON.parse(text); } catch { data = { ok: false, error: text || `HTTP ${res.status}` }; }
-  if (!res.ok && data.ok !== true) throw new Error(data.error || `HTTP ${res.status}`);
+  try {
+    data = text ? JSON.parse(text) : {};
+  } catch {
+    data = { ok: false, error: normalizeRouterErrorMessage(text, res.status, action) };
+  }
+
+  if (!res.ok || data.ok === false) {
+    throw normalizeRouterError(new Error(data.error || text || `HTTP ${res.status}`), res.status, action);
+  }
   return data;
 }
 
+const routerClient = {
+  async test() {
+    const res = await sendRouter({ action: 'test' });
+    return { ok: res.ok === true, message: res.message || 'Router API OK' };
+  },
+  async status() {
+    const res = await sendRouter({ action: 'status' });
+    if (!res || res.ok !== true) throw new Error('router status failed');
+    const rawDomains = uniqueClean(res.rawDomains || res.domains || []);
+    const rawSubnets = uniqueClean(res.rawSubnets || res.subnets || []);
+    return {
+      domains: uniqueClean(res.domains || rawDomains),
+      subnets: uniqueClean(res.subnets || rawSubnets).map(normalizeIpOrSubnet).filter(Boolean),
+      rawDomains,
+      rawSubnets
+    };
+  },
+  async setLists(domains, subnets) {
+    const res = await sendRouter({ action: 'setLists', setDomains: domains, setSubnets: subnets });
+    if (!res || res.ok !== true) throw new Error('router list replace failed');
+    return res;
+  },
+  async apply(entries = {}) {
+    const res = await sendRouter({ action: 'apply', ...entries });
+    if (!res || res.ok !== true) throw new Error('router API failed');
+    return res;
+  },
+  async control(action) {
+    const res = await sendRouter({ action });
+    if (!res || res.ok !== true) throw new Error(`${action} failed`);
+    return res;
+  }
+};
+
 
 async function getRouterLists() {
-  const res = await sendRouter({ action: 'status' });
-  if (!res || res.ok !== true) throw new Error(res?.error || 'router status failed');
-  const rawDomains = uniqueClean(res.rawDomains || res.domains || []);
-  const rawSubnets = uniqueClean(res.rawSubnets || res.subnets || []);
-  return {
-    domains: uniqueClean(res.domains || rawDomains),
-    subnets: uniqueClean(res.subnets || rawSubnets).map(normalizeIpOrSubnet).filter(Boolean),
-    rawDomains,
-    rawSubnets
-  };
+  return routerClient.status();
 }
 
 function parseEditableListText(text) {
@@ -489,8 +580,7 @@ async function saveRouterLists(domainsText, subnetsText) {
   const setDomains = uniqueClean(parseEditableListText(domainsText)).join('|');
   const setSubnets = uniqueClean(parseEditableListText(subnetsText)).map(normalizeIpOrSubnet).filter(Boolean).join('|');
 
-  const res = await sendRouter({ action: 'setLists', setDomains, setSubnets });
-  if (!res || res.ok !== true) throw new Error(res?.error || 'router list save failed');
+  await routerClient.setLists(setDomains, setSubnets);
 
   const lists = await getRouterLists();
   const states = await reconcileLocalLibraryWithRouterLists(lists);
@@ -504,7 +594,7 @@ async function getRouterControlStatus() {
   try {
     service = await sendRouter({ action: 'podkopStatus' });
   } catch (e) {
-    service = { ok: false, error: String(e.message || e) };
+    service = { ok: false, error: normalizeRouterErrorMessage(e.message || e) };
   }
   return {
     ok: true,
@@ -526,13 +616,11 @@ async function runRouterControlAction(action) {
   const allowed = new Set(['test', 'podkopStatus', 'restartPodkop', 'startPodkop', 'stopPodkop', 'enablePodkopAutostart', 'disablePodkopAutostart', 'rebootRouter']);
   if (!allowed.has(action)) throw new Error('Unsupported router action');
   if (action === 'test') {
-    const res = await sendRouter({ action: 'test' });
-    return { ok: true, message: res.message || 'Router API OK' };
+    return routerClient.test();
   }
   if (action === 'podkopStatus') return getRouterControlStatus();
   if (action === 'rebootRouter') {
-    const res = await sendRouter({ action: 'rebootRouter' });
-    if (!res || res.ok !== true) throw new Error(res?.error || 'Router reboot failed');
+    const res = await routerClient.control('rebootRouter');
     await log.warn('router', 'router reboot requested');
     return { ok: true, message: res.message || 'Router reboot requested' };
   }
@@ -543,8 +631,7 @@ async function runRouterControlAction(action) {
     enablePodkopAutostart: 'podkop autostart enabled',
     disablePodkopAutostart: 'podkop autostart disabled'
   };
-  const res = await sendRouter({ action });
-  if (!res || res.ok !== true) throw new Error(res?.error || `${action} failed`);
+  const res = await routerClient.control(action);
   await log.success('router', actionLabels[action] || action);
   await delay(900);
   return getRouterControlStatus();
@@ -718,13 +805,18 @@ async function testRouterCredentials(url, token) {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 12000);
   let res;
+  let text = '';
   try {
-    res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }, body, signal: controller.signal });
-  } finally { clearTimeout(timeout); }
-  const text = await res.text();
+    res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }, body: body.toString(), signal: controller.signal });
+    text = await res.text();
+  } catch (e) {
+    throw normalizeRouterError(e, 0, 'test');
+  } finally {
+    clearTimeout(timeout);
+  }
   let data;
-  try { data = JSON.parse(text); } catch { data = { ok: false, error: text || `HTTP ${res.status}` }; }
-  if (!res.ok || data.ok !== true) throw new Error(data.error || `HTTP ${res.status}`);
+  try { data = text ? JSON.parse(text) : {}; } catch { data = { ok: false, error: normalizeRouterErrorMessage(text, res.status, 'test') }; }
+  if (!res.ok || data.ok !== true) throw normalizeRouterError(new Error(data.error || text || `HTTP ${res.status}`), res.status, 'test');
   return data;
 }
 
@@ -735,8 +827,7 @@ async function applyRouterChange({ origin, mode, addDomains, addIps, removeDomai
   const ipsR = uniqueClean(removeIps).map(normalizeIpOrSubnet).filter(Boolean);
   if (!domainsA.length && !ipsA.length && !domainsR.length && !ipsR.length) return { ok: true, changed: false };
   await log.info(mode === 'direct' ? 'rollback' : 'router', `${mode === 'direct' ? 'remove' : 'add'} ${origin}: domains ${domainsA.length || domainsR.length}, subnets ${ipsA.length || ipsR.length}`);
-  const res = await sendRouter({ action: 'apply', addDomains: domainsA, addSubnets: ipsA, removeDomains: domainsR, removeSubnets: ipsR });
-  if (!res || !res.ok) throw new Error(res?.error || 'router API failed');
+  const res = await routerClient.apply({ addDomains: domainsA, addSubnets: ipsA, removeDomains: domainsR, removeSubnets: ipsR });
   await log.success('router', res.message || 'Podkop lists updated');
   return res;
 }
@@ -838,12 +929,7 @@ async function commitOriginStates(nextStates, context = 'sync', origin = 'librar
     // Authoritative replace: OpenWrt is only a target projection of extension state.
     // Every sync writes the full final lists, including empty lists for a clean extension.
     await log.info('router', `replace ${origin}: domains ${afterAgg.domains.length}, subnets ${afterAgg.ips.length}`);
-    const res = await sendRouter({
-      action: 'setLists',
-      setDomains: afterAgg.domains,
-      setSubnets: afterAgg.ips
-    });
-    if (!res || res.ok !== true) throw new Error(res?.error || 'router list replace failed');
+    const res = await routerClient.setLists(afterAgg.domains, afterAgg.ips);
     await log.success('router', res.message || 'Podkop lists replaced');
 
     await chrome.storage.local.set({ [keys.origins]: nextStates });
@@ -934,7 +1020,7 @@ function buildExportPayload(states, disabled) {
   return {
     schema: 'podkop-manager.v3',
     app: 'Podkop Manager',
-    version: '3.96',
+    version: '1.0',
     exportedAt: new Date().toISOString(),
     library: {
       sites,
@@ -1313,7 +1399,7 @@ async function completeSetup(payload) {
   if (!token) return { ok: false, code: 'missingToken', error: 'Router API token is required' };
   try { await testRouterCredentials(url, token); }
   catch (e) {
-    const msg = String(e.message || e);
+    const msg = normalizeRouterErrorMessage(e.message || e, 0, 'test');
     await log.warn('router', `API test failed: ${msg}`);
     return { ok: false, error: msg, code: msg.toLowerCase().includes('invalid token') ? 'invalidToken' : 'apiTestFailed' };
   }
@@ -1366,7 +1452,7 @@ chrome.runtime.onInstalled.addListener(async (details) => {
   const raw = await chrome.storage.local.get(keys.settings);
   const saved = raw[keys.settings];
   if (!saved) await chrome.storage.local.set({ [keys.settings]: DEFAULT_SETTINGS });
-  else if (saved.schemaVersion !== '1.3.24') await patchSettings({ ...saved, schemaVersion: '3.64', profileScope: { ...(saved.profileScope || {}), [saved.activeProfile || 'default']: 'both' } });
+  else if (saved.schemaVersion !== '1.0.0') await patchSettings({ ...saved, schemaVersion: '1.0.0', profileScope: { ...(saved.profileScope || {}), [saved.activeProfile || 'default']: 'both' } });
   await refreshAllTabIcons();
 });
 chrome.runtime.onStartup.addListener(refreshAllTabIcons);
@@ -1591,14 +1677,17 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       case 'GET_SETTINGS': return getSettings();
       case 'SAVE_SETTINGS': return patchSettings(message.patch || {});
       case 'TEST_ROUTER': {
-        const res = await sendRouter({ action: 'test' });
-        if (!res?.ok) throw new Error(res?.error || 'Router API test failed');
+        const res = await routerClient.test();
+        if (!res?.ok) throw new Error('Router API test failed');
         await log.success('router', res.message || 'Router API OK');
         return res;
       }
       default: return { ok: false, error: 'unknown message' };
     }
-  })().then(sendResponse).catch(e => sendResponse({ ok: false, error: String(e.message || e), errorObj: { code: 'internal', message: String(e.message || e) } }));
+  })().then(sendResponse).catch(e => {
+    const message = normalizeRouterErrorMessage(e.message || e);
+    sendResponse({ ok: false, error: message, errorObj: { code: 'internal', message } });
+  });
   return true;
 });
 
