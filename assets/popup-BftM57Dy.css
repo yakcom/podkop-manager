@@ -4319,6 +4319,19 @@ a.brand-byline.svelte-2iqjbh *{
   letter-spacing:-.005em!important;
 }
 
+.setup-field.svelte-2iqjbh small a,
+.setup-field small a{
+  color:inherit!important;
+  text-decoration:underline!important;
+  text-underline-offset:2px!important;
+  cursor:pointer!important;
+}
+
+.setup-field.svelte-2iqjbh small a:hover,
+.setup-field small a:hover{
+  color:rgba(232,232,235,.72)!important;
+}
+
 
 /* 3.27 error/toast typography aligned with brand subtitle */
 .setup-toast.svelte-2iqjbh,

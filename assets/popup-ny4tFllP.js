@@ -262,7 +262,7 @@ const t = (key, vars = {}) => {
         'settings.save': 'Save',
     'settings.back': 'Back',
     'settings.connected': 'Router API configured',
-    'settings.tokenHelp': 'Token from the OpenWrt installer',
+    'settings.tokenHelp': 'Token from the <a href="https://github.com/yakcom/podkop-manager#1-install-the-openwrt-router-api" target="_blank" rel="noreferrer">OpenWrt router API</a>',
     'common.confirm': 'Confirm',
     'common.cancel': 'Cancel',
     'library.title': 'Overview',

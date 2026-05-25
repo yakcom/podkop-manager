@@ -3,7 +3,7 @@
 
 # Podkop Manager
 
-**Browser extension for Podkop routing control on OpenWrt**
+**Browser extension for managing Podkop routes on OpenWrt**
 
 </div>
 
@@ -13,9 +13,11 @@
 
 ## Overview
 
-**Podkop Manager** is a browser extension for managing **Podkop** routing directly from the current tab.
+**Podkop Manager** helps manage which sites go through **Podkop** and which stay direct, right from the current browser tab.
 
-It detects the active site, shows related domains and public IPv4 addresses, and syncs selected routing entries to OpenWrt.
+It detects the active site, related request domains, and public IPv4 addresses, then syncs the selected entries to Podkop lists on OpenWrt.
+
+The **OpenWrt router API** is a small local, token-protected endpoint installed on the router. The extension uses it to check the connection and update Podkop domain/IP lists.
 
 ---
 <p align="center">
@@ -38,7 +40,6 @@ sh -c "$(wget -qO- https://raw.githubusercontent.com/yakcom/podkop-manager/main/
 If your OpenWrt image does not include `wget`, use:
 
 ```sh
-
 sh -c "$(uclient-fetch -qO- https://raw.githubusercontent.com/yakcom/podkop-manager/main/openwrt/install.sh)"
 ```
 
@@ -49,7 +50,7 @@ Podkop Manager: installed
 Token: <token>
 ```
 
-Copy the token. You will need it in the extension setup screen.
+Copy the token. You will need it on the extension setup screen.
 
 ### 2. Install the browser extension
 
@@ -84,15 +85,9 @@ This removes only the API endpoint, token, and runtime lock. Podkop and its UCI 
 
 ## Features
 
-### Tab-aware control
+### Tab-aware routing
 
-Podkop Manager works with the active tab and can use:
-
-- main origin;
-- current hostname;
-- public IPv4 addresses;
-- request domains;
-- manually added entries.
+Podkop Manager can use the active tab's origin, hostname, related request domains, public IPv4 addresses, and manually added entries.
 
 ### Routing modes
 
@@ -110,27 +105,8 @@ Podkop Manager works with the active tab and can use:
 | **ips** | Public IPv4 entries only. |
 | **domains + ips** | Domains and public IPv4 entries. |
 
-### Global exclusions
+### Overview and router lists
 
-Any domain or IP can be excluded globally. Excluded entries are shown as inactive and are not synced to proxied lists.
+The **Overview** screen shows proxied sites, direct exclusions, counters, expandable site cards, manual entries, import/export, and the router list editor.
 
-### Overview
-
-The **Overview** screen includes:
-
-- proxied sites;
-- direct exclusions;
-- domain/IP counters;
-- expandable site cards;
-- manual Direct entries;
-- import/export;
-- router list editor.
-
-### Router lists
-
-Read and edit the final OpenWrt lists:
-
-- domain list;
-- IPv4/subnet list.
-
-Useful for verification, recovery, and manual control.
+Router lists can be viewed and edited directly for verification, recovery, and manual control.
