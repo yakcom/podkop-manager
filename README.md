@@ -3,7 +3,7 @@
 
 # Podkop Manager
 
-**Browser extension for managing Podkop routes on OpenWrt**
+**Manage Podkop routing on OpenWrt, site by site**
 
 </div>
 
@@ -13,9 +13,9 @@
 
 ## Overview
 
-**Podkop Manager** helps manage which sites go through **Podkop** and which stay direct, right from the current browser tab.
+**Podkop Manager** lets you choose which sites go through **Podkop** and which stay direct, right from the current browser tab.
 
-It detects the active site, related request domains, and public IPv4 addresses, then syncs the selected entries to Podkop lists on OpenWrt.
+It detects the active site, related request domains, and public IPv4 addresses, then syncs your choices to Podkop lists on OpenWrt.
 
 The **OpenWrt router API** is a small local, token-protected endpoint installed on the router. The extension uses it to check the connection and update Podkop domain/IP lists.
 

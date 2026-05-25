@@ -22,7 +22,7 @@
     "default_popup": "src/popup/index.html"
   },
   "background": {
-    "service_worker": "service-worker-loader.js",
+    "service_worker": "service-worker.js",
     "type": "module"
   },
   "permissions": [

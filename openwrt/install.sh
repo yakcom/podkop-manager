@@ -5,14 +5,15 @@ REPO_OWNER="yakcom"
 REPO_NAME="podkop-manager"
 BRANCH="${BRANCH:-main}"
 
-APP_NAME="podkop-curator"
+APP_NAME="podkop-manager"
 CGI_PATH="/www/cgi-bin/podkop-curator"
 CONFIG_DIR="/etc/podkop-curator"
 TOKEN_PATH="/etc/podkop-curator/token"
-LOCK_PATH="/tmp/podkop-curator.lock"
+LOCK_PATH="/tmp/podkop-manager.lock"
+LEGACY_LOCK_PATH="/tmp/podkop-curator.lock"
 
 BASE_URL="${BASE_URL:-https://raw.githubusercontent.com/$REPO_OWNER/$REPO_NAME/$BRANCH/openwrt}"
-CGI_URL="${CGI_URL:-$BASE_URL/podkop-curator.cgi}"
+CGI_URL="${CGI_URL:-$BASE_URL/router-api.cgi}"
 
 if [ -t 1 ]; then
   C0="$(printf '\033[0m')"
@@ -72,7 +73,7 @@ chmod 600 "$TOKEN_PATH" 2>/dev/null || true
 
 tmp="/tmp/$APP_NAME.cgi.$$"
 fetch_to_file "$CGI_URL" "$tmp" || { rm -f "$tmp"; die "download failed"; }
-grep -q "podkop-curator" "$tmp" 2>/dev/null || { rm -f "$tmp"; die "invalid payload"; }
+grep -q "Podkop Manager" "$tmp" 2>/dev/null || { rm -f "$tmp"; die "invalid payload"; }
 sh -n "$tmp" || { rm -f "$tmp"; die "invalid shell syntax"; }
 
 if [ -f "$CGI_PATH" ]; then
@@ -82,7 +83,7 @@ fi
 
 mv "$tmp" "$CGI_PATH" || { rm -f "$tmp"; die "install failed"; }
 chmod 755 "$CGI_PATH" || die "chmod failed"
-rm -rf "$LOCK_PATH" 2>/dev/null || true
+rm -rf "$LOCK_PATH" "$LEGACY_LOCK_PATH" 2>/dev/null || true
 
 printf '%s%s:%s %sinstalled%s\n' "$C_NAME" "Podkop Manager" "$C0" "$C_OK" "$C0"
 printf '%sToken:%s %s%s%s\n' "$C_DIM" "$C0" "$C_TOKEN" "$token" "$C0"

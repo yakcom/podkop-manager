@@ -4,7 +4,7 @@
     "description": "Extension name"
   },
   "extDescription": {
-    "message": "Tab-aware Podkop routing control for OpenWrt through a lightweight router API.",
+    "message": "Manage Podkop routing on OpenWrt directly from the current tab.",
     "description": "Extension description"
   },
   "actionTitle": {

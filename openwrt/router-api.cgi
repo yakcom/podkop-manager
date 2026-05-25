@@ -190,7 +190,7 @@ merge_subnet_lines() {
 remove_domain_lines() {
   current="$1"
   removals="$2"
-  tmp="/tmp/podkop-curator-remove-domains.$$"
+  tmp="/tmp/podkop-manager-remove-domains.$$"
   printf '%s\n' "$removals" | clean_domain_lines > "$tmp"
   printf '%s\n' "$current" | clean_domain_lines | grep -vxFf "$tmp"
   rm -f "$tmp"
@@ -199,7 +199,7 @@ remove_domain_lines() {
 remove_subnet_lines() {
   current="$1"
   removals="$2"
-  tmp="/tmp/podkop-curator-remove-subnets.$$"
+  tmp="/tmp/podkop-manager-remove-subnets.$$"
   printf '%s\n' "$removals" | clean_subnet_lines > "$tmp"
   printf '%s\n' "$current" | clean_subnet_lines | grep -vxFf "$tmp"
   rm -f "$tmp"
@@ -283,13 +283,13 @@ currentDomains="$(read_podkop_text_option user_domains_text)"
 currentSubnets="$(read_podkop_text_option user_subnets_text)"
 
 
-LOCK_DIR="/tmp/podkop-curator.lock"
+LOCK_DIR="/tmp/podkop-manager.lock"
 
 acquire_lock() {
   tries=0
   while ! mkdir "$LOCK_DIR" 2>/dev/null; do
     tries=$((tries + 1))
-    [ "$tries" -ge 90 ] && json_err "503 Service Unavailable" "Podkop curator is busy"
+    [ "$tries" -ge 90 ] && json_err "503 Service Unavailable" "Podkop Manager is busy"
     sleep 1
   done
   trap 'rm -rf "$LOCK_DIR"' EXIT INT TERM
@@ -332,7 +332,7 @@ restart_podkop_once() {
 apply_podkop_changes() {
   prevDomains="$1"
   prevSubnets="$2"
-  tmp="/tmp/podkop-curator-apply.$$"
+  tmp="/tmp/podkop-manager-apply.$$"
 
   # Safe path only: do not stop/start manually. Podkop owns its own restart logic.
   # If restart fails, restore the previous UCI lists and try to restart the previous config.
@@ -389,7 +389,7 @@ podkop_service_json() {
   fi
 
   # 2) Podkop 0.7.x may not expose a useful daemon state. In LuCI the meaningful
-  # "started" state is the applied routing/DNS state. Detect generated runtime
+  # "started" state is the applied routing/DNS state. Check runtime
   # artifacts that podkop stop normally removes.
   if [ "$running" = "0" ]; then
     if [ -s /tmp/dnsmasq.d/podkop.conf ] || [ -s /tmp/dnsmasq.d/01-podkop.conf ] || [ -s /tmp/dnsmasq.d/podkop.dnsmasq ]; then
@@ -416,7 +416,7 @@ podkop_service_json() {
     for f in /tmp/podkop* /var/run/podkop* /run/podkop*; do
       [ -e "$f" ] || continue
       case "$f" in
-        *curator*) continue ;;
+        *curator*|*manager*) continue ;;
       esac
       running=1
       artifact_status="${artifact_status}tmp "
@@ -458,13 +458,13 @@ if [ "$action" = "podkopStatus" ]; then
 fi
 
 if [ "$action" = "restartPodkop" ]; then
-  if /etc/init.d/podkop restart >/tmp/podkop-curator-restart.$$ 2>&1; then
+  if /etc/init.d/podkop restart >/tmp/podkop-manager-restart.$$ 2>&1; then
     sleep 2
-    rm -f /tmp/podkop-curator-restart.$$
+    rm -f /tmp/podkop-manager-restart.$$
     json_ok "Podkop restarted"
   else
-    msg="$(cat /tmp/podkop-curator-restart.$$ 2>/dev/null)"
-    rm -f /tmp/podkop-curator-restart.$$
+    msg="$(cat /tmp/podkop-manager-restart.$$ 2>/dev/null)"
+    rm -f /tmp/podkop-manager-restart.$$
     json_err "500 Internal Server Error" "Podkop restart failed: $msg"
   fi
   exit 0
@@ -472,18 +472,18 @@ fi
 
 
 if [ "$action" = "startPodkop" ]; then
-  if /etc/init.d/podkop start >/tmp/podkop-curator-start.$$ 2>&1; then
+  if /etc/init.d/podkop start >/tmp/podkop-manager-start.$$ 2>&1; then
     sleep 2
-    rm -f /tmp/podkop-curator-start.$$
+    rm -f /tmp/podkop-manager-start.$$
     json_ok "Podkop started"
   else
-    if /etc/init.d/podkop restart >>/tmp/podkop-curator-start.$$ 2>&1; then
+    if /etc/init.d/podkop restart >>/tmp/podkop-manager-start.$$ 2>&1; then
       sleep 2
-      rm -f /tmp/podkop-curator-start.$$
+      rm -f /tmp/podkop-manager-start.$$
       json_ok "Podkop started"
     else
-      msg="$(cat /tmp/podkop-curator-start.$$ 2>/dev/null)"
-      rm -f /tmp/podkop-curator-start.$$
+      msg="$(cat /tmp/podkop-manager-start.$$ 2>/dev/null)"
+      rm -f /tmp/podkop-manager-start.$$
       json_err "500 Internal Server Error" "Podkop start failed: $msg"
     fi
   fi
@@ -491,39 +491,39 @@ if [ "$action" = "startPodkop" ]; then
 fi
 
 if [ "$action" = "enablePodkopAutostart" ]; then
-  if /etc/init.d/podkop enable >/tmp/podkop-curator-enable.$$ 2>&1; then
+  if /etc/init.d/podkop enable >/tmp/podkop-manager-enable.$$ 2>&1; then
     sleep 1
-    rm -f /tmp/podkop-curator-enable.$$
+    rm -f /tmp/podkop-manager-enable.$$
     json_ok "Podkop autostart enabled"
   else
-    msg="$(cat /tmp/podkop-curator-enable.$$ 2>/dev/null)"
-    rm -f /tmp/podkop-curator-enable.$$
+    msg="$(cat /tmp/podkop-manager-enable.$$ 2>/dev/null)"
+    rm -f /tmp/podkop-manager-enable.$$
     json_err "500 Internal Server Error" "Podkop autostart enable failed: $msg"
   fi
   exit 0
 fi
 
 if [ "$action" = "stopPodkop" ]; then
-  if /etc/init.d/podkop stop >/tmp/podkop-curator-stop.$$ 2>&1; then
+  if /etc/init.d/podkop stop >/tmp/podkop-manager-stop.$$ 2>&1; then
     sleep 2
-    rm -f /tmp/podkop-curator-stop.$$
+    rm -f /tmp/podkop-manager-stop.$$
     json_ok "Podkop stopped"
   else
-    msg="$(cat /tmp/podkop-curator-stop.$$ 2>/dev/null)"
-    rm -f /tmp/podkop-curator-stop.$$
+    msg="$(cat /tmp/podkop-manager-stop.$$ 2>/dev/null)"
+    rm -f /tmp/podkop-manager-stop.$$
     json_err "500 Internal Server Error" "Podkop stop failed: $msg"
   fi
   exit 0
 fi
 
 if [ "$action" = "disablePodkopAutostart" ]; then
-  if /etc/init.d/podkop disable >/tmp/podkop-curator-disable.$$ 2>&1; then
+  if /etc/init.d/podkop disable >/tmp/podkop-manager-disable.$$ 2>&1; then
     sleep 1
-    rm -f /tmp/podkop-curator-disable.$$
+    rm -f /tmp/podkop-manager-disable.$$
     json_ok "Podkop autostart disabled"
   else
-    msg="$(cat /tmp/podkop-curator-disable.$$ 2>/dev/null)"
-    rm -f /tmp/podkop-curator-disable.$$
+    msg="$(cat /tmp/podkop-manager-disable.$$ 2>/dev/null)"
+    rm -f /tmp/podkop-manager-disable.$$
     json_err "500 Internal Server Error" "Podkop autostart disable failed: $msg"
   fi
   exit 0
@@ -541,28 +541,28 @@ if [ "$action" = "globalCheck" ]; then
   out=""
   passed=0
 
-  if /etc/init.d/podkop check >/tmp/podkop-curator-check.$$ 2>&1; then
+  if /etc/init.d/podkop check >/tmp/podkop-manager-check.$$ 2>&1; then
     passed=1
-    out="$(cat /tmp/podkop-curator-check.$$ 2>/dev/null)"
+    out="$(cat /tmp/podkop-manager-check.$$ 2>/dev/null)"
   else
-    out="$(cat /tmp/podkop-curator-check.$$ 2>/dev/null)"
+    out="$(cat /tmp/podkop-manager-check.$$ 2>/dev/null)"
     if [ -z "$out" ]; then
       if command -v podkop >/dev/null 2>&1; then
-        if podkop check >/tmp/podkop-curator-check.$$ 2>&1; then
+        if podkop check >/tmp/podkop-manager-check.$$ 2>&1; then
           passed=1
         fi
-        out="$(cat /tmp/podkop-curator-check.$$ 2>/dev/null)"
+        out="$(cat /tmp/podkop-manager-check.$$ 2>/dev/null)"
       elif [ -x /usr/share/podkop/podkop ]; then
-        if /usr/share/podkop/podkop check >/tmp/podkop-curator-check.$$ 2>&1; then
+        if /usr/share/podkop/podkop check >/tmp/podkop-manager-check.$$ 2>&1; then
           passed=1
         fi
-        out="$(cat /tmp/podkop-curator-check.$$ 2>/dev/null)"
+        out="$(cat /tmp/podkop-manager-check.$$ 2>/dev/null)"
       else
         out="Global check command is not available on this Podkop installation."
       fi
     fi
   fi
-  rm -f /tmp/podkop-curator-check.$$
+  rm -f /tmp/podkop-manager-check.$$
 
   out="$(printf '%s' "$out" | tail -n 80)"
   out_json="$(json_escape "$out")"

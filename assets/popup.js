@@ -675,7 +675,7 @@ function optimisticToggleEntry(kind, value) {
   else set.add(normalizedValue);
   toggles[key] = [...set];
   snap.toggles = toggles;
-  // Mirror change into library.disabled so the proxied overview reflects gray state immediately.
+  // Keep the library view in step with the optimistic toggle state.
   if (library && library.disabled) {
     const libSet = new Set(library.disabled[key] || []);
     if (wasOn) libSet.add(normalizedValue);
@@ -742,7 +742,7 @@ function ensureLiveEntryWave(el) {
 
   el.classList.add('is-syncing-entry', 'entry-sync-live');
 
-  // Keep an inline fallback layer inside the chip.
+  // Inline layer keeps feedback visible if the overlay is removed.
   let wave = Array.from(el.children || []).find(child => child.classList?.contains('entry-sync-live-wave'));
   if (!wave) {
     wave = document.createElement('span');
@@ -751,8 +751,7 @@ function ensureLiveEntryWave(el) {
     el.appendChild(wave);
   }
 
-  // Main visible layer: fixed overlay above the clicked chip.
-  // This avoids chip-specific CSS conflicts and survives app innerHTML re-renders.
+  // Fixed overlay stays stable across popup re-renders.
   const rect = el.getBoundingClientRect();
   const radius = getComputedStyle(el).borderRadius || '10px';
   const overlay = document.createElement('span');
@@ -811,7 +810,7 @@ async function runEntryToggleMutation(el, kind, value, insideRequests = false) {
       requestsScrollTop = document.querySelector('.requests-inline-list')?.scrollTop || requestsScrollTop || 0;
     }
 
-    // Keep the chip in its current active/off state and run the wave on top of it.
+    // Leave the chip state in place while the router update is pending.
     ensureLiveEntryWave(el);
     await waitFrame();
     await waitMs(160);
@@ -1392,7 +1391,7 @@ function sameRequestsPayload(a = {}, b = {}) {
 chrome.runtime.onMessage.addListener((m) => {
   if (m.type === 'CONSOLE_LINE' && m.line) {
     consoleLines = [...consoleLines, m.line].slice(-200);
-    // Do not re-render while a chip sync is active: it destroys the live wave layer.
+    // Avoid replacing the live sync layer mid-animation.
     if (consoleOpen && !busy && !pendingEntrySync) render();
   }
   if (m.type === 'IPS_RESOLVED' && m.hostname && snap?.fullHostname === m.hostname) {
@@ -1405,7 +1404,7 @@ chrome.runtime.onMessage.addListener((m) => {
     const prevRequestsScrollTop = requestsScrollTop || document.querySelector('.requests-inline-list')?.scrollTop || 0;
     snap = { ...snap, requests: m.requests, requestsOpen: prevRequestsOpen };
     requestsScrollTop = prevRequestsScrollTop;
-    // If Requests is open, keep the visible DOM stable. Update state silently only.
+    // Keep the requests list stable while the user is inspecting it.
     if (!busy && !pendingEntrySync && !prevRequestsOpen) render();
   }
 });

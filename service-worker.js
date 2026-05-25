@@ -927,8 +927,7 @@ async function commitOriginStates(nextStates, context = 'sync', origin = 'librar
     const dDiff = diffTextLists(beforeAgg.domains, afterAgg.domains);
     const ipDiff = diffLists(beforeAgg.ips, afterAgg.ips);
 
-    // Authoritative replace: OpenWrt is only a target projection of extension state.
-    // Every sync writes the full final lists, including empty lists for a clean extension.
+    // Write the complete target lists on every commit, including empty lists.
     await log.info('router', `replace ${origin}: domains ${afterAgg.domains.length}, subnets ${afterAgg.ips.length}`);
     const res = await routerClient.setLists(afterAgg.domains, afterAgg.ips);
     await log.success('router', res.message || 'Podkop lists replaced');
@@ -1041,8 +1040,7 @@ function parseSiteRow(row) {
   const activeDomains = uniqueClean(row.active?.domains || row.domains || row.writtenDomains || []);
   const activeIps = uniqueClean(row.active?.ips || row.ips || row.writtenIps || []).map(normalizeIpOrSubnet).filter(Boolean);
 
-  // In v3, known is intentionally compact: inactive-but-associated only.
-  // Internal state still stores full known lists so Direct → Proxied restore keeps working.
+  // Keep exported "known" entries compact while preserving full state internally.
   const inactiveKnownDomains = uniqueClean(row.known?.domains || row.knownDomains || []);
   const inactiveKnownIps = uniqueClean(row.known?.ips || row.knownIps || []).map(normalizeIpOrSubnet).filter(Boolean);
 
@@ -1342,7 +1340,7 @@ async function refreshAllTabIcons() {
   for (const tab of tabs) if (typeof tab.id === 'number') refreshIconForTab(tab.id);
 }
 
-// Extension action uses manifest default_popup. Single click opens the popup; no background toggle is performed.
+// The popup is opened by the manifest action; the service worker only refreshes icons.
 chrome.tabs.onActivated.addListener(({ tabId }) => refreshIconForTab(tabId));
 chrome.tabs.onUpdated.addListener((tabId, info) => { if (info.status === 'complete' || info.url) refreshIconForTab(tabId); });
 

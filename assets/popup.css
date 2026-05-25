@@ -1,7 +1,5 @@
-.profile-picker.svelte-1j6himo{position:relative}.trigger.svelte-1j6himo{cursor:pointer;font-family:var(--pk-font-mono);transition:background var(--pk-dur-fast) var(--pk-ease-out)}.trigger.svelte-1j6himo:hover{background:var(--pk-surface-1)}.profile-active.svelte-1j6himo{font-weight:500;color:var(--pk-text-1);max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.dropdown.svelte-1j6himo{position:absolute;top:calc(100% + 6px);left:0;min-width:240px;padding:var(--pk-space-2);z-index:var(--pk-z-overlay);animation:svelte-1j6himo-dropdown-enter var(--pk-dur-base) var(--pk-ease-out)}@keyframes svelte-1j6himo-dropdown-enter{0%{opacity:0;transform:translateY(-4px)}}.dropdown-header.svelte-1j6himo{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--pk-text-3);padding:var(--pk-space-1) var(--pk-space-2)}.profile-list.svelte-1j6himo{list-style:none;margin:0;padding:0;max-height:220px;overflow-y:auto}.profile-item.svelte-1j6himo{width:100%;display:flex;align-items:center;justify-content:space-between;gap:var(--pk-space-2);padding:8px 10px;border-radius:var(--pk-radius-sm);font-family:var(--pk-font-mono);font-size:var(--pk-text-size-sm);color:var(--pk-text-2);transition:background var(--pk-dur-fast) var(--pk-ease-out)}.profile-item.svelte-1j6himo:hover{background:var(--pk-surface-3);color:var(--pk-text-1)}.profile-item.is-active.svelte-1j6himo{color:var(--pk-accent-base)}.dropdown-divider.svelte-1j6himo{height:1px;background:var(--pk-divider);margin:var(--pk-space-1) 0}.add-row.svelte-1j6himo,.create-row.svelte-1j6himo{width:100%;display:flex;align-items:center;gap:var(--pk-space-2);padding:8px 10px}.add-row.svelte-1j6himo{color:var(--pk-text-2);border-radius:var(--pk-radius-sm);transition:background var(--pk-dur-fast) var(--pk-ease-out)}.add-row.svelte-1j6himo:hover{background:var(--pk-surface-3);color:var(--pk-text-1)}.create-input.svelte-1j6himo{flex:1;background:var(--pk-surface-3);border:1px solid var(--pk-border);border-radius:var(--pk-radius-sm);padding:6px 8px;font-family:var(--pk-font-mono);font-size:var(--pk-text-size-sm);color:var(--pk-text-1);min-width:0}.create-input.svelte-1j6himo:focus{outline:none;border-color:var(--pk-accent-base)}.create-btn.svelte-1j6himo{background:var(--pk-accent-base);color:#fff;padding:6px 10px;border-radius:var(--pk-radius-sm);font-size:var(--pk-text-size-sm);font-weight:600}.create-btn.svelte-1j6himo:disabled{opacity:.5}.error.svelte-1j6himo{padding:0 var(--pk-space-2) var(--pk-space-1);color:var(--pk-error);font-size:var(--pk-text-size-xs)}.mode-stack.svelte-1kqa27u{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--pk-space-2)}.mode-btn.svelte-1kqa27u{position:relative;overflow:hidden;padding:var(--pk-space-3) var(--pk-space-2);border-radius:var(--pk-radius-md);background:var(--pk-surface-1);border:1px solid var(--pk-border);color:var(--pk-text-2);font-weight:500;font-size:var(--pk-text-size-md);letter-spacing:.01em;cursor:pointer;transition:transform var(--pk-dur-fast) var(--pk-ease-out),background var(--pk-dur-base) var(--pk-ease-out),border-color var(--pk-dur-base) var(--pk-ease-out),color var(--pk-dur-base) var(--pk-ease-out),box-shadow var(--pk-dur-slow) var(--pk-ease-out)}.mode-btn.svelte-1kqa27u:hover:not(.active):not(:disabled){background:var(--pk-surface-2);color:var(--pk-text-1);transform:translateY(-1px)}.mode-btn.svelte-1kqa27u:disabled{opacity:.5;cursor:not-allowed}.mode-btn.active.svelte-1kqa27u{transform:scale(1.02);color:var(--pk-text-1)}.mode-btn[data-theme-mode=direct].active.svelte-1kqa27u{background:var(--pk-accent-direct-soft);border-color:var(--pk-accent-direct);color:var(--pk-text-1)}.mode-btn[data-theme-mode=base].active.svelte-1kqa27u{background:var(--pk-accent-base-soft);border-color:var(--pk-accent-base);box-shadow:var(--pk-accent-base-glow)}.mode-btn[data-theme-mode=deep].active.svelte-1kqa27u{background:var(--pk-accent-deep-soft);border-color:var(--pk-accent-deep);box-shadow:var(--pk-accent-deep-glow)}.mode-btn.pending.svelte-1kqa27u{opacity:.7}.mode-label.svelte-1kqa27u{position:relative;z-index:1}.mode-shimmer.svelte-1kqa27u{position:absolute;inset:0;pointer-events:none;background:linear-gradient(120deg,transparent 0%,transparent 40%,rgba(255,255,255,.06) 50%,transparent 60%,transparent 100%);background-size:200% 100%;animation:svelte-1kqa27u-shimmer 3.6s linear infinite}@keyframes svelte-1kqa27u-shimmer{0%{background-position:200% 0}to{background-position:-200% 0}}.scope-stack.svelte-1x42u97{display:flex;flex-direction:column;gap:1px;padding:2px;background:var(--pk-surface-1);border:1px solid var(--pk-border);border-radius:var(--pk-radius-md)}.scope-btn.svelte-1x42u97{text-align:left;padding:8px 12px;border-radius:var(--pk-radius-sm);font-size:var(--pk-text-size-sm);color:var(--pk-text-2);font-family:var(--pk-font-mono);cursor:pointer;transition:background var(--pk-dur-fast) var(--pk-ease-out),color var(--pk-dur-fast) var(--pk-ease-out)}.scope-btn.svelte-1x42u97:hover:not(.active){background:var(--pk-surface-2);color:var(--pk-text-1)}.scope-btn.active.svelte-1x42u97{background:var(--pk-surface-3);color:var(--pk-accent-base);font-weight:500}.console.svelte-k3nlc3{background:var(--pk-console-bg);border:1px solid var(--pk-border);border-radius:var(--pk-radius-md);overflow:hidden;transition:border-color var(--pk-dur-base) var(--pk-ease-out)}.console.open.svelte-k3nlc3{border-color:var(--pk-border-strong)}.console-toggle.svelte-k3nlc3{width:100%;display:flex;align-items:center;gap:var(--pk-space-2);padding:var(--pk-space-2) var(--pk-space-3);color:var(--pk-text-2);font-size:var(--pk-text-size-sm);font-family:var(--pk-font-mono);cursor:pointer;user-select:none}.console-toggle.svelte-k3nlc3 .caret:where(.svelte-k3nlc3){display:inline-flex;color:var(--pk-text-3)}.title.svelte-k3nlc3{flex:1;text-align:left;color:var(--pk-text-1);font-weight:500;text-transform:uppercase;letter-spacing:.04em;font-size:11px}.count.svelte-k3nlc3{color:var(--pk-text-3);font-size:11px}.copy-btn.svelte-k3nlc3{display:inline-flex;align-items:center;gap:4px;padding:4px 8px;border-radius:var(--pk-radius-sm);background:#ffffff0a;color:var(--pk-text-2);font-size:10px;font-family:var(--pk-font-mono);transition:background var(--pk-dur-fast) var(--pk-ease-out)}.copy-btn.svelte-k3nlc3:hover{background:#ffffff14;color:var(--pk-text-1)}.copy-label.svelte-k3nlc3{text-transform:uppercase;letter-spacing:.04em}.console-body.svelte-k3nlc3{max-height:220px;overflow-y:auto;padding:var(--pk-space-2) var(--pk-space-3) var(--pk-space-3);font-family:var(--pk-font-mono);font-size:11px;line-height:1.55;color:var(--pk-console-text);border-top:1px solid rgba(255,255,255,.04)}.empty.svelte-k3nlc3{color:var(--pk-text-3);padding:var(--pk-space-3) 0;text-align:center;font-style:italic}.line.svelte-k3nlc3{display:flex;gap:8px;padding:2px 0;word-break:break-word}.time.svelte-k3nlc3{color:var(--pk-text-3);flex-shrink:0}.channel.svelte-k3nlc3{flex-shrink:0;text-transform:lowercase}.line[data-channel=base].svelte-k3nlc3 .channel:where(.svelte-k3nlc3),.line[data-channel=deep].svelte-k3nlc3 .channel:where(.svelte-k3nlc3){color:var(--pk-console-mode)}.line[data-channel=router].svelte-k3nlc3 .channel:where(.svelte-k3nlc3){color:var(--pk-info)}.line[data-channel=dns].svelte-k3nlc3 .channel:where(.svelte-k3nlc3){color:var(--pk-text-2)}.line[data-channel=rollback].svelte-k3nlc3 .channel:where(.svelte-k3nlc3){color:var(--pk-warn)}.line[data-level=success].svelte-k3nlc3 .text:where(.svelte-k3nlc3){color:var(--pk-console-success)}.line[data-level=warn].svelte-k3nlc3 .text:where(.svelte-k3nlc3){color:var(--pk-console-warn)}.line[data-level=error].svelte-k3nlc3 .text:where(.svelte-k3nlc3){color:var(--pk-console-error)}.text.svelte-k3nlc3{flex:1}.console-error-hint.svelte-k3nlc3{padding:var(--pk-space-2) var(--pk-space-3);color:var(--pk-error);font-size:var(--pk-text-size-xs);border-top:1px solid rgba(255,90,110,.18);background:#ff5a6e0f}.overlay.svelte-1qkpgkj{position:fixed;inset:0;background:#00000073;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:var(--pk-space-4);z-index:var(--pk-z-modal);animation:svelte-1qkpgkj-overlay-enter var(--pk-dur-base) var(--pk-ease-out)}@keyframes svelte-1qkpgkj-overlay-enter{0%{opacity:0}}.modal.svelte-1qkpgkj{padding:var(--pk-space-5);max-width:320px;display:flex;flex-direction:column;gap:var(--pk-space-3);animation:svelte-1qkpgkj-modal-enter var(--pk-dur-slow) var(--pk-ease-out)}@keyframes svelte-1qkpgkj-modal-enter{0%{opacity:0;transform:scale(.97)}}h2.svelte-1qkpgkj{margin:0;font-size:var(--pk-text-size-lg);color:var(--pk-text-1)}p.svelte-1qkpgkj{margin:0;color:var(--pk-text-2);font-size:var(--pk-text-size-sm);line-height:1.5}.actions.svelte-1qkpgkj{display:flex;gap:var(--pk-space-2);justify-content:flex-end;margin-top:var(--pk-space-2)}.btn-ghost.svelte-1qkpgkj{padding:8px 14px;border-radius:var(--pk-radius-md);background:var(--pk-surface-3);color:var(--pk-text-2);font-size:var(--pk-text-size-sm)}.btn-ghost.svelte-1qkpgkj:hover{background:var(--pk-surface-1);color:var(--pk-text-1)}.btn-danger.svelte-1qkpgkj{padding:8px 14px;border-radius:var(--pk-radius-md);background:var(--pk-error);color:#fff;font-weight:600;font-size:var(--pk-text-size-sm);transition:filter var(--pk-dur-fast) var(--pk-ease-out)}.btn-danger.svelte-1qkpgkj:hover{filter:brightness(1.1)}.popup.svelte-2iqjbh{width:380px;min-height:0;padding:var(--pk-space-4);display:flex;flex-direction:column;gap:var(--pk-space-3)}.loading.svelte-2iqjbh{padding:var(--pk-space-8);text-align:center;color:var(--pk-text-3)}.unconfigured.svelte-2iqjbh{padding:var(--pk-space-6);text-align:center;display:flex;flex-direction:column;gap:var(--pk-space-3)}.unconfigured.svelte-2iqjbh h1:where(.svelte-2iqjbh){margin:0;font-size:var(--pk-text-size-xl);letter-spacing:-.01em}.unconfigured.svelte-2iqjbh p:where(.svelte-2iqjbh){margin:0;color:var(--pk-text-2);font-size:var(--pk-text-size-md)}.hdr.svelte-2iqjbh{display:flex;align-items:center;justify-content:space-between;gap:var(--pk-space-2)}.hdr-actions.svelte-2iqjbh{display:flex;gap:var(--pk-space-1)}.icon-btn.svelte-2iqjbh{width:32px;height:32px;border-radius:var(--pk-radius-md);color:var(--pk-text-2);display:inline-flex;align-items:center;justify-content:center;transition:background var(--pk-dur-fast) var(--pk-ease-out),color var(--pk-dur-fast) var(--pk-ease-out)}.icon-btn.svelte-2iqjbh:hover{background:var(--pk-surface-3);color:var(--pk-text-1)}.banner.svelte-2iqjbh{display:flex;align-items:center;gap:var(--pk-space-2);padding:var(--pk-space-2) var(--pk-space-3);border-radius:var(--pk-radius-md);font-size:var(--pk-text-size-sm)}.banner-info.svelte-2iqjbh{background:#7aa7ff1f;color:var(--pk-info);border:1px solid rgba(122,167,255,.25)}.banner-warn.svelte-2iqjbh{background:#ffb5471f;color:var(--pk-warn);border:1px solid rgba(255,181,71,.25)}.banner-error.svelte-2iqjbh{background:#ff5a6e1f;color:var(--pk-error);border:1px solid rgba(255,90,110,.25);align-items:flex-start}.banner-error.svelte-2iqjbh>div:where(.svelte-2iqjbh){flex:1}.banner-message.svelte-2iqjbh{color:var(--pk-text-2);font-size:var(--pk-text-size-xs);margin-top:2px}.origin-panel.svelte-2iqjbh{padding:var(--pk-space-3) var(--pk-space-4);display:flex;flex-direction:column;gap:var(--pk-space-2)}.origin-row.svelte-2iqjbh{display:flex;align-items:baseline;gap:var(--pk-space-3);min-height:22px}.origin-row.sub.svelte-2iqjbh{border-top:1px solid var(--pk-divider);padding-top:var(--pk-space-2)}.origin-label.svelte-2iqjbh{font-family:var(--pk-font-mono);font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--pk-text-3);width:36px;flex-shrink:0}.origin-name.svelte-2iqjbh{font-family:var(--pk-font-mono);font-size:var(--pk-text-size-md);color:var(--pk-text-1);word-break:break-all}.origin-empty.svelte-2iqjbh,.dim.svelte-2iqjbh{color:var(--pk-text-3);font-size:var(--pk-text-size-sm)}.ip-list.svelte-2iqjbh{display:flex;flex-wrap:wrap;gap:var(--pk-space-1);flex:1}.ip-pill.svelte-2iqjbh{font-family:var(--pk-font-mono);font-size:var(--pk-text-size-xs);padding:2px 6px;background:var(--pk-surface-3);border-radius:var(--pk-radius-sm);color:var(--pk-text-2)}.btn-primary.svelte-2iqjbh{margin-top:var(--pk-space-2);padding:10px var(--pk-space-4);background:var(--pk-accent-base);color:#fff;border-radius:var(--pk-radius-md);font-weight:600;transition:filter var(--pk-dur-fast) var(--pk-ease-out)}.btn-primary.svelte-2iqjbh:hover{filter:brightness(1.1)}.btn-ghost.svelte-2iqjbh{padding:6px 10px;border-radius:var(--pk-radius-sm);color:var(--pk-text-2);background:var(--pk-surface-3);font-size:var(--pk-text-size-xs);transition:background var(--pk-dur-fast) var(--pk-ease-out)}.btn-ghost.svelte-2iqjbh:hover{background:var(--pk-surface-1)}
-/* Router API compatibility layer: keeps the original visual system. */
+﻿.profile-picker.svelte-1j6himo{position:relative}.trigger.svelte-1j6himo{cursor:pointer;font-family:var(--pk-font-mono);transition:background var(--pk-dur-fast) var(--pk-ease-out)}.trigger.svelte-1j6himo:hover{background:var(--pk-surface-1)}.profile-active.svelte-1j6himo{font-weight:500;color:var(--pk-text-1);max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.dropdown.svelte-1j6himo{position:absolute;top:calc(100% + 6px);left:0;min-width:240px;padding:var(--pk-space-2);z-index:var(--pk-z-overlay);animation:svelte-1j6himo-dropdown-enter var(--pk-dur-base) var(--pk-ease-out)}@keyframes svelte-1j6himo-dropdown-enter{0%{opacity:0;transform:translateY(-4px)}}.dropdown-header.svelte-1j6himo{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--pk-text-3);padding:var(--pk-space-1) var(--pk-space-2)}.profile-list.svelte-1j6himo{list-style:none;margin:0;padding:0;max-height:220px;overflow-y:auto}.profile-item.svelte-1j6himo{width:100%;display:flex;align-items:center;justify-content:space-between;gap:var(--pk-space-2);padding:8px 10px;border-radius:var(--pk-radius-sm);font-family:var(--pk-font-mono);font-size:var(--pk-text-size-sm);color:var(--pk-text-2);transition:background var(--pk-dur-fast) var(--pk-ease-out)}.profile-item.svelte-1j6himo:hover{background:var(--pk-surface-3);color:var(--pk-text-1)}.profile-item.is-active.svelte-1j6himo{color:var(--pk-accent-base)}.dropdown-divider.svelte-1j6himo{height:1px;background:var(--pk-divider);margin:var(--pk-space-1) 0}.add-row.svelte-1j6himo,.create-row.svelte-1j6himo{width:100%;display:flex;align-items:center;gap:var(--pk-space-2);padding:8px 10px}.add-row.svelte-1j6himo{color:var(--pk-text-2);border-radius:var(--pk-radius-sm);transition:background var(--pk-dur-fast) var(--pk-ease-out)}.add-row.svelte-1j6himo:hover{background:var(--pk-surface-3);color:var(--pk-text-1)}.create-input.svelte-1j6himo{flex:1;background:var(--pk-surface-3);border:1px solid var(--pk-border);border-radius:var(--pk-radius-sm);padding:6px 8px;font-family:var(--pk-font-mono);font-size:var(--pk-text-size-sm);color:var(--pk-text-1);min-width:0}.create-input.svelte-1j6himo:focus{outline:none;border-color:var(--pk-accent-base)}.create-btn.svelte-1j6himo{background:var(--pk-accent-base);color:#fff;padding:6px 10px;border-radius:var(--pk-radius-sm);font-size:var(--pk-text-size-sm);font-weight:600}.create-btn.svelte-1j6himo:disabled{opacity:.5}.error.svelte-1j6himo{padding:0 var(--pk-space-2) var(--pk-space-1);color:var(--pk-error);font-size:var(--pk-text-size-xs)}.mode-stack.svelte-1kqa27u{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--pk-space-2)}.mode-btn.svelte-1kqa27u{position:relative;overflow:hidden;padding:var(--pk-space-3) var(--pk-space-2);border-radius:var(--pk-radius-md);background:var(--pk-surface-1);border:1px solid var(--pk-border);color:var(--pk-text-2);font-weight:500;font-size:var(--pk-text-size-md);letter-spacing:.01em;cursor:pointer;transition:transform var(--pk-dur-fast) var(--pk-ease-out),background var(--pk-dur-base) var(--pk-ease-out),border-color var(--pk-dur-base) var(--pk-ease-out),color var(--pk-dur-base) var(--pk-ease-out),box-shadow var(--pk-dur-slow) var(--pk-ease-out)}.mode-btn.svelte-1kqa27u:hover:not(.active):not(:disabled){background:var(--pk-surface-2);color:var(--pk-text-1);transform:translateY(-1px)}.mode-btn.svelte-1kqa27u:disabled{opacity:.5;cursor:not-allowed}.mode-btn.active.svelte-1kqa27u{transform:scale(1.02);color:var(--pk-text-1)}.mode-btn[data-theme-mode=direct].active.svelte-1kqa27u{background:var(--pk-accent-direct-soft);border-color:var(--pk-accent-direct);color:var(--pk-text-1)}.mode-btn[data-theme-mode=base].active.svelte-1kqa27u{background:var(--pk-accent-base-soft);border-color:var(--pk-accent-base);box-shadow:var(--pk-accent-base-glow)}.mode-btn[data-theme-mode=deep].active.svelte-1kqa27u{background:var(--pk-accent-deep-soft);border-color:var(--pk-accent-deep);box-shadow:var(--pk-accent-deep-glow)}.mode-btn.pending.svelte-1kqa27u{opacity:.7}.mode-label.svelte-1kqa27u{position:relative;z-index:1}.mode-shimmer.svelte-1kqa27u{position:absolute;inset:0;pointer-events:none;background:linear-gradient(120deg,transparent 0%,transparent 40%,rgba(255,255,255,.06) 50%,transparent 60%,transparent 100%);background-size:200% 100%;animation:svelte-1kqa27u-shimmer 3.6s linear infinite}@keyframes svelte-1kqa27u-shimmer{0%{background-position:200% 0}to{background-position:-200% 0}}.scope-stack.svelte-1x42u97{display:flex;flex-direction:column;gap:1px;padding:2px;background:var(--pk-surface-1);border:1px solid var(--pk-border);border-radius:var(--pk-radius-md)}.scope-btn.svelte-1x42u97{text-align:left;padding:8px 12px;border-radius:var(--pk-radius-sm);font-size:var(--pk-text-size-sm);color:var(--pk-text-2);font-family:var(--pk-font-mono);cursor:pointer;transition:background var(--pk-dur-fast) var(--pk-ease-out),color var(--pk-dur-fast) var(--pk-ease-out)}.scope-btn.svelte-1x42u97:hover:not(.active){background:var(--pk-surface-2);color:var(--pk-text-1)}.scope-btn.active.svelte-1x42u97{background:var(--pk-surface-3);color:var(--pk-accent-base);font-weight:500}.console.svelte-k3nlc3{background:var(--pk-console-bg);border:1px solid var(--pk-border);border-radius:var(--pk-radius-md);overflow:hidden;transition:border-color var(--pk-dur-base) var(--pk-ease-out)}.console.open.svelte-k3nlc3{border-color:var(--pk-border-strong)}.console-toggle.svelte-k3nlc3{width:100%;display:flex;align-items:center;gap:var(--pk-space-2);padding:var(--pk-space-2) var(--pk-space-3);color:var(--pk-text-2);font-size:var(--pk-text-size-sm);font-family:var(--pk-font-mono);cursor:pointer;user-select:none}.console-toggle.svelte-k3nlc3 .caret:where(.svelte-k3nlc3){display:inline-flex;color:var(--pk-text-3)}.title.svelte-k3nlc3{flex:1;text-align:left;color:var(--pk-text-1);font-weight:500;text-transform:uppercase;letter-spacing:.04em;font-size:11px}.count.svelte-k3nlc3{color:var(--pk-text-3);font-size:11px}.copy-btn.svelte-k3nlc3{display:inline-flex;align-items:center;gap:4px;padding:4px 8px;border-radius:var(--pk-radius-sm);background:#ffffff0a;color:var(--pk-text-2);font-size:10px;font-family:var(--pk-font-mono);transition:background var(--pk-dur-fast) var(--pk-ease-out)}.copy-btn.svelte-k3nlc3:hover{background:#ffffff14;color:var(--pk-text-1)}.copy-label.svelte-k3nlc3{text-transform:uppercase;letter-spacing:.04em}.console-body.svelte-k3nlc3{max-height:220px;overflow-y:auto;padding:var(--pk-space-2) var(--pk-space-3) var(--pk-space-3);font-family:var(--pk-font-mono);font-size:11px;line-height:1.55;color:var(--pk-console-text);border-top:1px solid rgba(255,255,255,.04)}.empty.svelte-k3nlc3{color:var(--pk-text-3);padding:var(--pk-space-3) 0;text-align:center;font-style:italic}.line.svelte-k3nlc3{display:flex;gap:8px;padding:2px 0;word-break:break-word}.time.svelte-k3nlc3{color:var(--pk-text-3);flex-shrink:0}.channel.svelte-k3nlc3{flex-shrink:0;text-transform:lowercase}.line[data-channel=base].svelte-k3nlc3 .channel:where(.svelte-k3nlc3),.line[data-channel=deep].svelte-k3nlc3 .channel:where(.svelte-k3nlc3){color:var(--pk-console-mode)}.line[data-channel=router].svelte-k3nlc3 .channel:where(.svelte-k3nlc3){color:var(--pk-info)}.line[data-channel=dns].svelte-k3nlc3 .channel:where(.svelte-k3nlc3){color:var(--pk-text-2)}.line[data-channel=rollback].svelte-k3nlc3 .channel:where(.svelte-k3nlc3){color:var(--pk-warn)}.line[data-level=success].svelte-k3nlc3 .text:where(.svelte-k3nlc3){color:var(--pk-console-success)}.line[data-level=warn].svelte-k3nlc3 .text:where(.svelte-k3nlc3){color:var(--pk-console-warn)}.line[data-level=error].svelte-k3nlc3 .text:where(.svelte-k3nlc3){color:var(--pk-console-error)}.text.svelte-k3nlc3{flex:1}.console-error-hint.svelte-k3nlc3{padding:var(--pk-space-2) var(--pk-space-3);color:var(--pk-error);font-size:var(--pk-text-size-xs);border-top:1px solid rgba(255,90,110,.18);background:#ff5a6e0f}.overlay.svelte-1qkpgkj{position:fixed;inset:0;background:#00000073;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:var(--pk-space-4);z-index:var(--pk-z-modal);animation:svelte-1qkpgkj-overlay-enter var(--pk-dur-base) var(--pk-ease-out)}@keyframes svelte-1qkpgkj-overlay-enter{0%{opacity:0}}.modal.svelte-1qkpgkj{padding:var(--pk-space-5);max-width:320px;display:flex;flex-direction:column;gap:var(--pk-space-3);animation:svelte-1qkpgkj-modal-enter var(--pk-dur-slow) var(--pk-ease-out)}@keyframes svelte-1qkpgkj-modal-enter{0%{opacity:0;transform:scale(.97)}}h2.svelte-1qkpgkj{margin:0;font-size:var(--pk-text-size-lg);color:var(--pk-text-1)}p.svelte-1qkpgkj{margin:0;color:var(--pk-text-2);font-size:var(--pk-text-size-sm);line-height:1.5}.actions.svelte-1qkpgkj{display:flex;gap:var(--pk-space-2);justify-content:flex-end;margin-top:var(--pk-space-2)}.btn-ghost.svelte-1qkpgkj{padding:8px 14px;border-radius:var(--pk-radius-md);background:var(--pk-surface-3);color:var(--pk-text-2);font-size:var(--pk-text-size-sm)}.btn-ghost.svelte-1qkpgkj:hover{background:var(--pk-surface-1);color:var(--pk-text-1)}.btn-danger.svelte-1qkpgkj{padding:8px 14px;border-radius:var(--pk-radius-md);background:var(--pk-error);color:#fff;font-weight:600;font-size:var(--pk-text-size-sm);transition:filter var(--pk-dur-fast) var(--pk-ease-out)}.btn-danger.svelte-1qkpgkj:hover{filter:brightness(1.1)}.popup.svelte-2iqjbh{width:380px;min-height:0;padding:var(--pk-space-4);display:flex;flex-direction:column;gap:var(--pk-space-3)}.loading.svelte-2iqjbh{padding:var(--pk-space-8);text-align:center;color:var(--pk-text-3)}.unconfigured.svelte-2iqjbh{padding:var(--pk-space-6);text-align:center;display:flex;flex-direction:column;gap:var(--pk-space-3)}.unconfigured.svelte-2iqjbh h1:where(.svelte-2iqjbh){margin:0;font-size:var(--pk-text-size-xl);letter-spacing:-.01em}.unconfigured.svelte-2iqjbh p:where(.svelte-2iqjbh){margin:0;color:var(--pk-text-2);font-size:var(--pk-text-size-md)}.hdr.svelte-2iqjbh{display:flex;align-items:center;justify-content:space-between;gap:var(--pk-space-2)}.hdr-actions.svelte-2iqjbh{display:flex;gap:var(--pk-space-1)}.icon-btn.svelte-2iqjbh{width:32px;height:32px;border-radius:var(--pk-radius-md);color:var(--pk-text-2);display:inline-flex;align-items:center;justify-content:center;transition:background var(--pk-dur-fast) var(--pk-ease-out),color var(--pk-dur-fast) var(--pk-ease-out)}.icon-btn.svelte-2iqjbh:hover{background:var(--pk-surface-3);color:var(--pk-text-1)}.banner.svelte-2iqjbh{display:flex;align-items:center;gap:var(--pk-space-2);padding:var(--pk-space-2) var(--pk-space-3);border-radius:var(--pk-radius-md);font-size:var(--pk-text-size-sm)}.banner-info.svelte-2iqjbh{background:#7aa7ff1f;color:var(--pk-info);border:1px solid rgba(122,167,255,.25)}.banner-warn.svelte-2iqjbh{background:#ffb5471f;color:var(--pk-warn);border:1px solid rgba(255,181,71,.25)}.banner-error.svelte-2iqjbh{background:#ff5a6e1f;color:var(--pk-error);border:1px solid rgba(255,90,110,.25);align-items:flex-start}.banner-error.svelte-2iqjbh>div:where(.svelte-2iqjbh){flex:1}.banner-message.svelte-2iqjbh{color:var(--pk-text-2);font-size:var(--pk-text-size-xs);margin-top:2px}.origin-panel.svelte-2iqjbh{padding:var(--pk-space-3) var(--pk-space-4);display:flex;flex-direction:column;gap:var(--pk-space-2)}.origin-row.svelte-2iqjbh{display:flex;align-items:baseline;gap:var(--pk-space-3);min-height:22px}.origin-row.sub.svelte-2iqjbh{border-top:1px solid var(--pk-divider);padding-top:var(--pk-space-2)}.origin-label.svelte-2iqjbh{font-family:var(--pk-font-mono);font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--pk-text-3);width:36px;flex-shrink:0}.origin-name.svelte-2iqjbh{font-family:var(--pk-font-mono);font-size:var(--pk-text-size-md);color:var(--pk-text-1);word-break:break-all}.origin-empty.svelte-2iqjbh,.dim.svelte-2iqjbh{color:var(--pk-text-3);font-size:var(--pk-text-size-sm)}.ip-list.svelte-2iqjbh{display:flex;flex-wrap:wrap;gap:var(--pk-space-1);flex:1}.ip-pill.svelte-2iqjbh{font-family:var(--pk-font-mono);font-size:var(--pk-text-size-xs);padding:2px 6px;background:var(--pk-surface-3);border-radius:var(--pk-radius-sm);color:var(--pk-text-2)}.btn-primary.svelte-2iqjbh{margin-top:var(--pk-space-2);padding:10px var(--pk-space-4);background:var(--pk-accent-base);color:#fff;border-radius:var(--pk-radius-md);font-weight:600;transition:filter var(--pk-dur-fast) var(--pk-ease-out)}.btn-primary.svelte-2iqjbh:hover{filter:brightness(1.1)}.btn-ghost.svelte-2iqjbh{padding:6px 10px;border-radius:var(--pk-radius-sm);color:var(--pk-text-2);background:var(--pk-surface-3);font-size:var(--pk-text-size-xs);transition:background var(--pk-dur-fast) var(--pk-ease-out)}.btn-ghost.svelte-2iqjbh:hover{background:var(--pk-surface-1)}
 .console.open .console-body{display:block}.console:not(.open) .console-body{display:none}.console.open .caret{transform:rotate(90deg)}.console .caret{transition:transform var(--pk-dur-fast) var(--pk-ease-out)}.console-toggle{border:0;background:transparent}.btn-danger{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;background:rgba(255,90,110,.1);color:var(--pk-error);border:1px solid rgba(255,90,110,.3);border-radius:var(--pk-radius-md);font-size:var(--pk-text-size-sm);font-weight:500}.overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:var(--pk-space-4);z-index:var(--pk-z-modal)}.modal{padding:var(--pk-space-5);max-width:320px;display:flex;flex-direction:column;gap:var(--pk-space-3)}.modal h2{margin:0;font-size:var(--pk-text-size-lg)}.modal p{margin:0;color:var(--pk-text-2);line-height:1.5}.modal .actions{display:flex;justify-content:flex-end;gap:var(--pk-space-2)}
-/* Inline router setup inside popup. */
 .setup-panel.svelte-2iqjbh{padding:var(--pk-space-4);display:flex;flex-direction:column;gap:var(--pk-space-3)}
 .setup-head.svelte-2iqjbh{display:flex;align-items:center;gap:var(--pk-space-3);text-align:left}
 .setup-head.svelte-2iqjbh h1:where(.svelte-2iqjbh){margin:0;font-size:var(--pk-text-size-lg);letter-spacing:-.01em;color:var(--pk-text-1)}
@@ -17,23 +15,19 @@
 .setup-actions.svelte-2iqjbh .btn-primary:where(.svelte-2iqjbh),.setup-actions.svelte-2iqjbh .btn-ghost:where(.svelte-2iqjbh){margin-top:0;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
 .setup-actions.svelte-2iqjbh button:disabled{opacity:.5;cursor:not-allowed;filter:none!important}
 
-/* Popup containment fixes: the extension window is fixed-size and content scrolls inside it. */
 html,body,#app{width:380px;height:520px;min-width:380px;min-height:0;max-width:380px;max-height:520px;overflow:hidden;}
 body{background:var(--pk-bg-gradient),var(--pk-bg-base);}
 .popup.svelte-2iqjbh{width:380px;height:520px;min-height:0;max-height:520px;overflow-y:auto;overflow-x:hidden;}
 .popup.svelte-2iqjbh::-webkit-scrollbar{width:0;height:0;}
 
-/* Dynamic popup sizing: popup height follows the last visible block. */
 html,body,#app{width:380px!important;min-width:380px!important;max-width:380px!important;height:auto!important;min-height:0!important;max-height:none!important;overflow:hidden!important;}
 body{margin:0!important;background:var(--pk-bg-gradient),var(--pk-bg-base)!important;}
 .popup.svelte-2iqjbh{width:380px!important;height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;box-sizing:border-box!important;}
 
-/* 1.3.12: main popup starts at origin panel; no profile/settings bar. */
 .hdr.svelte-2iqjbh,.profile-picker.svelte-1j6himo,.hdr-actions.svelte-2iqjbh{display:none!important;}
 .popup.svelte-2iqjbh{height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;}
 
 
-/* 1.3.17 OpenWrt visual refresh + Podkop Manager brand. */
 :root,[data-theme=dark]{
   --pk-bg-base:#1f1f1f;
   --pk-bg-gradient:
@@ -114,8 +108,6 @@ body{background:var(--pk-bg-gradient),var(--pk-bg-base)!important;}
 *::-webkit-scrollbar{width:8px;height:8px}*::-webkit-scrollbar-track{background:rgba(20,20,20,.55);border-radius:99px}*::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#00a3e6,#006fa8);border-radius:99px;border:2px solid rgba(20,20,20,.7)}
 @media (prefers-reduced-motion: reduce){.popup.svelte-2iqjbh,.popup.svelte-2iqjbh:before,.brand-head.svelte-2iqjbh,.origin-panel.svelte-2iqjbh,.mode-stack.svelte-1kqa27u,.scope-stack.svelte-1x42u97,.setup-panel.svelte-2iqjbh{animation:none!important}.mode-btn.svelte-1kqa27u,.scope-btn.svelte-1x42u97,.origin-panel.svelte-2iqjbh,.setup-panel.svelte-2iqjbh{transition:none!important}}
 
-/* 1.3.18: cohesive OpenWrt palette and stable motion.
-   All accent states are derived from the LuCI/OpenWrt cyan-blue family. */
 :root,[data-theme=dark]{
   --pk-owrt:#00a6d6;
   --pk-owrt-hi:#3ed6ff;
@@ -206,7 +198,6 @@ html:not([data-pm-hydrated="1"]) .setup-panel.svelte-2iqjbh{animation:pm-card-in
 *::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--pk-owrt-hi),var(--pk-owrt-mid))!important;}
 @media (prefers-reduced-motion: reduce){html:not([data-pm-hydrated="1"]) .popup.svelte-2iqjbh,html:not([data-pm-hydrated="1"]) .brand-head.svelte-2iqjbh,html:not([data-pm-hydrated="1"]) .origin-panel.svelte-2iqjbh,html:not([data-pm-hydrated="1"]) .mode-stack.svelte-1kqa27u,html:not([data-pm-hydrated="1"]) .scope-stack.svelte-1x42u97,html:not([data-pm-hydrated="1"]) .setup-panel.svelte-2iqjbh{animation:none!important}}
 
-/* 1.3.19: strict LuCI graphite palette, restored mode wave, custom Podkop Manager mark. */
 :root,[data-theme=dark]{
   --pm-graphite-0:#111111;
   --pm-graphite-1:#191919;
@@ -317,7 +308,6 @@ body{background:var(--pk-bg-gradient),var(--pk-bg-base)!important;color:var(--pk
 .profile-item.is-active.svelte-1j6himo{color:#eeeeee!important;}
 .create-input.svelte-1j6himo:focus{border-color:rgba(255,255,255,.36)!important;}
 
-/* 1.3.20: interaction polish, no stray blue focus, copyable origin/IPs. */
 :root,[data-theme=dark]{
   --pm-focus-ring:rgba(255,255,255,.22)!important;
   --pm-direct:#4f8aaa;
@@ -356,7 +346,6 @@ button:focus-visible,.copyable.svelte-2iqjbh:focus-visible,.setup-input.svelte-2
 .mode-btn.svelte-1kqa27u:hover:not(.active):not(:disabled){border-color:rgba(255,255,255,.24)!important;background:linear-gradient(180deg,rgba(56,56,56,.98),rgba(31,31,31,.98))!important;}
 .setup-input.svelte-2iqjbh:focus{border-color:rgba(255,255,255,.36)!important;box-shadow:0 0 0 3px rgba(255,255,255,.08),0 0 20px rgba(255,255,255,.045)!important;}
 
-/* 1.3.21: remove static button overlays, restore mode colors, keep static panels stable. */
 :root,[data-theme=dark]{
   --pm-direct:#6f8fb0!important;
   --pm-direct-soft:rgba(111,143,176,.18)!important;
@@ -372,7 +361,6 @@ button:focus-visible,.copyable.svelte-2iqjbh:focus-visible,.setup-input.svelte-2
   --pm-deep-wave:rgba(88,235,220,.44)!important;
 }
 
-/* Static cards must not jump on hover. */
 .origin-panel.svelte-2iqjbh,
 .setup-panel.svelte-2iqjbh,
 .origin-panel.svelte-2iqjbh:hover,
@@ -385,7 +373,6 @@ button:focus-visible,.copyable.svelte-2iqjbh:focus-visible,.setup-input.svelte-2
   box-shadow:var(--pk-shadow-1)!important;
 }
 
-/* Remove all static waves/gradients from active mode buttons; animated wave stays via ::before only. */
 .mode-btn.active.svelte-1kqa27u{
   transform:translateY(-2px) scale(1.018)!important;
   color:#f4f4f4!important;
@@ -423,7 +410,6 @@ button:focus-visible,.copyable.svelte-2iqjbh:focus-visible,.setup-input.svelte-2
   background:linear-gradient(105deg,transparent 30%,rgba(24,184,166,.05) 40%,var(--pm-deep-wave) 50%,rgba(24,184,166,.07) 60%,transparent 70%)!important;
 }
 
-/* Non-active hover stays graphite, without cyan/blue borders leaking from older overrides. */
 .mode-btn.svelte-1kqa27u:hover:not(.active):not(:disabled){
   border-color:rgba(255,255,255,.24)!important;
   background:linear-gradient(180deg,rgba(56,56,56,.98),rgba(31,31,31,.98))!important;
@@ -436,7 +422,6 @@ button:focus-visible,.copyable.svelte-2iqjbh:focus-visible,.setup-input.svelte-2
   border-color:rgba(255,255,255,.18)!important;
 }
 
-/* 1.3.23: local library controls and ownership inspector */
 .brand-head.svelte-2iqjbh{display:flex!important;align-items:center!important;gap:10px!important;}
 .brand-copy.svelte-2iqjbh{flex:1 1 auto!important;min-width:0!important;}
 .brand-actions,.library-tools{display:flex;align-items:center;gap:7px;user-select:none;-webkit-user-select:none;}
@@ -469,7 +454,6 @@ button:focus-visible,.copyable.svelte-2iqjbh:focus-visible,.setup-input.svelte-2
 .library-muted{font-size:11px;color:#777;user-select:none;-webkit-user-select:none;}
 @media (max-width: 360px){.library-columns{grid-template-columns:1fr}.library-stats{grid-template-columns:1fr}.brand-actions{gap:5px}.tool-btn{width:30px;height:30px}}
 
-/* 1.3.24: optimistic OpenWrt sync indicator and frozen-state polish */
 .sync-slot.svelte-2iqjbh{
   width:36px!important;
   height:32px!important;
@@ -545,7 +529,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 1.3.29 setup icon polish */
 .setup-logo.svelte-2iqjbh{
   width:34px!important;
   height:34px!important;
@@ -561,7 +544,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 1.3.30 setup header matches the main brand header */
 .setup-panel .brand-head.svelte-2iqjbh{
   margin-bottom:18px;
 }
@@ -588,7 +570,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 1.3.31 disabled connect state, larger app icon, compact version badge */
 .btn-primary.svelte-2iqjbh:disabled,
 .btn-primary.svelte-2iqjbh[disabled]{
   cursor:not-allowed!important;
@@ -657,7 +638,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 1.3.32 brand header layout fix: no icon/title squeeze */
 .brand-head.svelte-2iqjbh{
   display:grid!important;
   grid-template-columns:44px minmax(0,1fr) auto!important;
@@ -734,7 +714,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 1.3.33 brand header layout fix: version belongs to the title, actions stay right */
 .brand-head.svelte-2iqjbh{
   display:flex!important;
   align-items:center!important;
@@ -820,7 +799,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 1.3.34 setup validation toast: overlay, no layout expansion */
 .setup-panel.pk-glass-strong.svelte-2iqjbh,
 .setup-panel.svelte-2iqjbh{
   position:relative!important;
@@ -889,14 +867,12 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
   }
 }
 
-/* Keep setup panel height stable when validation appears */
 .setup-panel .banner.banner-error,
 .setup-panel .banner.banner-info{
   display:none!important;
 }
 
 
-/* 1.3.35 setup error polish */
 .setup-toast.svelte-2iqjbh{
   min-height:24px!important;
   padding:6px 9px!important;
@@ -925,7 +901,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
   font-weight:650!important;
 }
 
-/* Remove the misplaced disabled-forbidden pseudo icon entirely. */
 .btn-primary.svelte-2iqjbh:disabled,
 .btn-primary.svelte-2iqjbh[disabled]{
   position:relative!important;
@@ -940,7 +915,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 1.3.36 fix sync indicator overlapping version */
 .brand-head.svelte-2iqjbh{
   display:grid!important;
   grid-template-columns:44px minmax(0,1fr) auto auto!important;
@@ -1025,7 +999,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 1.3.37 footer version/credit, no version in title */
 .version-badge.svelte-2iqjbh{
   display:none!important;
 }
@@ -1059,7 +1032,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 1.3.39 stable rollback + compact clickable footer */
 .app-footer.svelte-2iqjbh{
   margin:4px 0 0!important;
   padding:0!important;
@@ -1097,7 +1069,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 1.3.40 compact footer spacing and yakcom credit */
 .app-footer.svelte-2iqjbh{
   margin:2px 0 2px!important;
   padding:0!important;
@@ -1119,7 +1090,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 1.3.41 equal compact footer spacing */
 .app-footer.svelte-2iqjbh{
   margin:2px 0 2px!important;
   padding:0!important;
@@ -1132,7 +1102,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 1.3.42 footer sits close to the last visible block */
 .scope-stack.svelte-1kqa27u,
 .scope-stack.svelte-2iqjbh,
 .scope-panel.svelte-1kqa27u,
@@ -1152,7 +1121,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 1.3.43 footer is centered inside the bottom outer padding */
 .popup.svelte-2iqjbh{
   position:relative!important;
   padding:var(--pk-space-4)!important;
@@ -1182,7 +1150,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 1.3.44 Library: single toolbar entry + router list editor */
 .library-tabs{
   position:relative;
   z-index:1;
@@ -1258,7 +1225,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 .router-action-btn{min-width:92px;height:32px;border-radius:11px!important;}
 
 
-/* 1.3.47 Router lists action polish */
 .library-tools{
   display:flex;
   align-items:center;
@@ -1348,7 +1314,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 1.3.48 top version + professional segmented setup gateway */
 .app-footer.svelte-2iqjbh{
   display:none!important;
 }
@@ -1438,7 +1403,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 1.3.49 setup error copy + refined version badge placement */
 .brand-title-wrap.svelte-2iqjbh{
   position:relative!important;
   display:inline-flex!important;
@@ -1476,7 +1440,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 1.3.50 setup vertical density + lighter version badge */
 .setup-panel.svelte-2iqjbh{
   gap:10px!important;
 }
@@ -1498,7 +1461,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 1.3.51 setup toast position + regular version + animated button loader */
 .setup-toast.svelte-2iqjbh{
   top:58px!important;
   right:18px!important;
@@ -1523,7 +1485,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 1.3.52 balanced setup toast position */
 .setup-toast.svelte-2iqjbh{
   top:68px!important;
   right:18px!important;
@@ -1538,7 +1499,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 1.3.53 refined setup token input and quieter helper text */
 .setup-field.svelte-2iqjbh small{
   color:rgba(232,232,235,.38)!important;
   font-size:10px!important;
@@ -1610,7 +1570,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 1.3.54 corner artifact cleanup + clearer token key icon */
 .setup-panel.pk-glass-strong.svelte-2iqjbh,
 .setup-panel.svelte-2iqjbh{
   isolation:isolate!important;
@@ -1645,7 +1604,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 1.3.55 proportional token key icon */
 .token-mark.svelte-2iqjbh{
   width:28px!important;
   height:28px!important;
@@ -1664,7 +1622,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 0.1 Router lists action state polish */
 .router-refresh-btn.spinning svg{
   animation:pm-sync-icon-spin .82s linear infinite!important;
   transform-origin:50% 50%!important;
@@ -1693,7 +1650,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 0.2 Router control panel */
 .control-panel{
   position:relative;
   display:flex;
@@ -1925,7 +1881,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 0.3 additional Podkop controls */
 .control-actions-stack{
   display:flex;
   flex-direction:column;
@@ -1961,7 +1916,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 0.4 refined Router control */
 .control-grid.is-locked{
   pointer-events:none;
 }
@@ -2015,7 +1969,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 0.5 control stability and cleaner buttons */
 .control-action-btn{
   gap:0!important;
 }
@@ -2027,7 +1980,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 0.6 controls cleanup + larger version badge */
 .brand-version-top.svelte-2iqjbh{
   min-width:38px!important;
   height:16px!important;
@@ -2037,7 +1989,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 0.7 async skeleton loading */
 .pm-skeleton{
   position:relative;
   display:inline-block;
@@ -2098,7 +2049,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 1.1 unified Router control panel */
 .control-panel-unified{
   gap:11px!important;
 }
@@ -2223,7 +2173,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 1.2 request activity block */
 .requests-panel.svelte-2iqjbh{
   display:flex;
   flex-direction:column;
@@ -2313,7 +2262,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 1.3 inline collapsible requests inside Origin panel */
 .requests-panel.svelte-2iqjbh{
   display:none!important;
 }
@@ -2389,7 +2337,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 1.4 requests row alignment polish */
 .origin-requests{
   border-top:1px solid rgba(255,255,255,.055);
 }
@@ -2451,13 +2398,11 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
   opacity:.72;
 }
 
-/* override older 1.3 selector */
 .requests-summary-value{
   display:none!important;
 }
 
 
-/* 1.5 requests row exact vertical centering */
 .origin-requests .requests-summary.origin-row{
   min-height:30px!important;
   height:30px!important;
@@ -2492,7 +2437,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 1.6 final REQUESTS row centering */
 .origin-panel.svelte-2iqjbh{
   gap:0!important;
 }
@@ -2561,7 +2505,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 1.7 REQUESTS label spacing */
 .origin-requests .requests-summary.origin-row{
   gap:10px!important;
 }
@@ -2581,7 +2524,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 1.8 per-entry routing toggles */
 .toggle-list{
   align-items:center;
 }
@@ -2677,7 +2619,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 1.9 requests full list with internal scroll */
 .requests-inline-list{
   max-height:138px!important;
   overflow-y:auto!important;
@@ -2708,7 +2649,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 2.0 global disabled list + stable request scroll */
 .requests-inline-list{
   overscroll-behavior:contain;
   scroll-behavior:auto!important;
@@ -2765,7 +2705,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 2.2 Local Library nested Sites panes */
 .library-subtabs{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -2803,7 +2742,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 2.3 add entries to Proxied / Direct */
 .library-add-form{
   display:grid;
   grid-template-columns:1fr auto;
@@ -2858,7 +2796,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 2.4 manual proxied/direct editor polish */
 .disabled-stats{
   display:none!important;
 }
@@ -2946,7 +2883,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 2.5 remove button overlays chip instead of becoming a nested pill */
 .library-manual-chip{
   position:relative!important;
   overflow:visible!important;
@@ -2996,7 +2932,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 2.6 single clean manual chip, no outer nested-looking shell */
 .disabled-chip-list{
   overflow:visible!important;
   padding:7px 7px 8px!important;
@@ -3096,7 +3031,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 2.7 precise manual chip alignment and reliable remove hit-area */
 .disabled-chip-list{
   overflow:visible!important;
   padding:8px 8px 9px!important;
@@ -3157,7 +3091,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 2.8 chip remove is a sibling overlay, not nested inside the chip button */
 .library-chip-wrap{
   position:relative!important;
   display:inline-flex!important;
@@ -3217,7 +3150,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 2.9 remove click fix + silent validation */
 .library-chip-wrap{
   position:relative!important;
   pointer-events:auto!important;
@@ -3255,7 +3187,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 3.0 Sites panes: Proxied is overview; Direct is global exclusions */
 .library-subtabs{
   grid-template-columns:repeat(2,1fr)!important;
 }
@@ -3276,7 +3207,6 @@ button:disabled,.tool-btn:disabled,.mode-btn:disabled,.scope-btn:disabled{
 }
 
 
-/* 3.2 no global sync icon, per-entry sync waves */
 .sync-slot.svelte-2iqjbh,
 .sync-indicator.svelte-2iqjbh{
   display:none!important;
@@ -3311,13 +3241,11 @@ body:has(.library-add-btn.spinning){
   animation:spin .8s linear infinite;
 }
 
-/* 3.2 requests spacing */
 .origin-requests .requests-inline-list{
   margin-top:7px!important;
   padding-top:5px!important;
 }
 
-/* 3.2 smaller version bubble */
 .brand-version-top.svelte-2iqjbh{
   min-width:0!important;
   width:auto!important;
@@ -3329,7 +3257,6 @@ body:has(.library-add-btn.spinning){
   line-height:14px!important;
 }
 
-/* 3.2 prevent horizontal scroll in library chips */
 .library-values,
 .disabled-chip-list{
   overflow-x:hidden!important;
@@ -3346,7 +3273,6 @@ body:has(.library-add-btn.spinning){
 }
 
 
-/* 3.3 final visual/sync polish */
 .brand-version-top.svelte-2iqjbh{
   min-width:0!important;
   width:max-content!important;
@@ -3373,7 +3299,6 @@ body:has(.library-add-btn.spinning){
   to{transform:rotate(360deg);}
 }
 
-/* Direct remove sync wave */
 .library-manual-chip.is-syncing-entry,
 .library-chip-wrap.is-syncing-entry .library-manual-chip{
   position:relative!important;
@@ -3392,7 +3317,6 @@ body:has(.library-add-btn.spinning){
   pointer-events:none;
 }
 
-/* Center Direct remove X more precisely */
 .library-chip-wrap .library-chip-remove,
 .library-chip-remove,
 .disabled-chip-list .library-chip-remove{
@@ -3418,7 +3342,6 @@ body:has(.library-add-btn.spinning){
   transform:translateY(-1px) scale(1.07)!important;
 }
 
-/* Main origin/host copy: no hover highlight, copy preserved */
 .origin-name.svelte-2iqjbh.copyable:hover,
 .origin-name.svelte-2iqjbh.copyable:focus,
 .origin-name.svelte-2iqjbh.copyable:active{
@@ -3433,7 +3356,6 @@ body:has(.library-add-btn.spinning){
   cursor:pointer!important;
 }
 
-/* No horizontal scrollbar in Proxied/Library lists */
 .library-values,
 .disabled-chip-list{
   overflow-x:hidden!important;
@@ -3456,7 +3378,6 @@ body:has(.library-add-btn.spinning){
 }
 
 
-/* 3.4 authority replace + final UX fixes */
 .popup.is-busy,
 .popup.is-busy *,
 html:has(.popup.is-busy),
@@ -3471,12 +3392,10 @@ body:has(.popup.is-busy){
   pointer-events:none;
 }
 
-/* keep the site list visible during sync; wave marks the exact item */
 .library-list .library-site{
   transition:opacity .16s ease;
 }
 
-/* origin/host copy must never show hover/click/copied highlight */
 .origin-name.origin-copy,
 .origin-name.origin-copy:hover,
 .origin-name.origin-copy:focus,
@@ -3500,7 +3419,6 @@ body:has(.popup.is-busy){
   content:none!important;
 }
 
-/* prevent generic copyable hover from overriding origin */
 .origin-panel .copyable.origin-copy:hover,
 .origin-panel .copyable.origin-copy.copied{
   background:transparent!important;
@@ -3509,7 +3427,6 @@ body:has(.popup.is-busy){
   color:inherit!important;
 }
 
-/* Make Direct remove X remain centered and wait-aware */
 .library-chip-wrap .library-chip-remove,
 .library-chip-remove,
 .disabled-chip-list .library-chip-remove{
@@ -3528,7 +3445,6 @@ body:has(.popup.is-busy){
 }
 
 
-/* 3.6 Local Library scroll and export/import polish */
 .library-list{
   max-height:356px!important;
   overflow-y:auto!important;
@@ -3590,7 +3506,6 @@ body:has(.popup.is-busy){
   white-space:nowrap!important;
 }
 
-/* library site origin: copy remains, hover/click highlight removed */
 .library-origin-copy,
 .library-origin-copy:hover,
 .library-origin-copy:focus,
@@ -3613,7 +3528,6 @@ body:has(.popup.is-busy){
 }
 
 
-/* 3.8 main header byline + slightly wider version bubble */
 .brand-byline.svelte-2iqjbh{
   display:inline-block;
   width:max-content;
@@ -3637,7 +3551,6 @@ body:has(.popup.is-busy){
 }
 
 
-/* 3.9 main header icon balance after byline */
 .popup > .brand-head.svelte-2iqjbh:first-child{
   align-items:center!important;
 }
@@ -3656,7 +3569,6 @@ body:has(.popup.is-busy){
 }
 
 
-/* 3.11 Router control renamed Settings + unified info tiles */
 .control-topline,
 .control-connect-grid.compact,
 .control-metrics.compact{
@@ -3734,7 +3646,6 @@ body:has(.popup.is-busy){
 }
 
 
-/* 3.12 Settings info layout: status/gateway/token row + metrics row */
 .control-info-stack{
   display:flex!important;
   flex-direction:column!important;
@@ -3761,7 +3672,6 @@ body:has(.popup.is-busy){
   font-size:13px!important;
 }
 
-/* 3.12 hard wait cursor while any view is busy */
 html:has(.popup.is-busy),
 html:has(.popup.is-busy) *,
 body:has(.popup.is-busy),
@@ -3784,7 +3694,6 @@ body:has(.library-add-btn.spinning) *{
 }
 
 
-/* 3.13 no wait cursor anywhere; loading is represented by UI animation only */
 html,
 body,
 #app,
@@ -3878,7 +3787,6 @@ body:has(.popup.is-busy) .copyable{
 }
 
 
-/* 3.14 restore semantic cursors without ever using wait */
 html,
 body,
 #app,
@@ -3968,14 +3876,12 @@ label *{
   cursor:default!important;
 }
 
-/* clickable labels/buttons keep pointer where expected */
 label:has(input:not(:disabled)),
 label:has(textarea:not(:disabled)){
   cursor:default!important;
 }
 
 
-/* 3.15 definitive cursor semantics: exact hovered editable element wins */
 html,
 body,
 #app,
@@ -3983,7 +3889,6 @@ body,
   cursor:auto!important;
 }
 
-/* Editable surfaces */
 input:not([disabled]),
 textarea:not([disabled]),
 .setup-input.svelte-2iqjbh:not([disabled]),
@@ -3998,7 +3903,6 @@ input[type="url"]:not([disabled]){
   cursor:text!important;
 }
 
-/* Make wrappers around text fields not mask the I-beam when hovering the actual input area */
 .setup-field:has(input:not([disabled])),
 .token-shell:has(input:not([disabled])),
 .gateway-input:has(input:not([disabled])),
@@ -4007,7 +3911,6 @@ input[type="url"]:not([disabled]){
   cursor:auto!important;
 }
 
-/* Non-editable labels remain normal, but do not affect actual input/textarea cursor */
 label,
 .setup-field span,
 .setup-field small,
@@ -4016,7 +3919,6 @@ label,
   cursor:default!important;
 }
 
-/* Clickable controls */
 button:not([disabled]),
 button:not([disabled]) *,
 .tool-btn:not([disabled]),
@@ -4048,7 +3950,6 @@ button:not([disabled]) *,
   cursor:pointer!important;
 }
 
-/* Disabled/loading: normal cursor, never wait */
 button:disabled,
 button:disabled *,
 input:disabled,
@@ -4072,7 +3973,6 @@ textarea:disabled,
   cursor:default!important;
 }
 
-/* Last word: editable elements must still override generic clickable/label rules */
 input:not([disabled]),
 textarea:not([disabled]),
 .setup-input.svelte-2iqjbh:not([disabled]),
@@ -4084,7 +3984,6 @@ textarea:not([disabled]),
 }
 
 
-/* 3.16 cursor and Settings metric/status polish */
 .brand-byline.svelte-2iqjbh,
 .brand-byline.svelte-2iqjbh *,
 a.brand-byline.svelte-2iqjbh,
@@ -4163,7 +4062,6 @@ a.brand-byline.svelte-2iqjbh *{
 }
 
 
-/* 3.17 Router lists: compact editable fields, no helper text, vertically resizable */
 .router-list-field{
   gap:6px!important;
 }
@@ -4193,7 +4091,6 @@ a.brand-byline.svelte-2iqjbh *{
 }
 
 
-/* 3.18 Router lists compact count bubbles */
 .router-lists-summary{
   display:none!important;
 }
@@ -4234,7 +4131,6 @@ a.brand-byline.svelte-2iqjbh *{
 }
 
 
-/* 3.19 settings byline + subtler field captions */
 .setup-panel .brand-byline.svelte-2iqjbh{
   display:inline-block!important;
   margin-top:2px!important;
@@ -4270,7 +4166,6 @@ a.brand-byline.svelte-2iqjbh *{
 
 
 
-/* 3.22 setup labels as compact outline pills + setup byline */
 .setup-panel .brand-byline.svelte-2iqjbh{
   display:inline-block!important;
   margin-top:2px!important;
@@ -4333,7 +4228,6 @@ a.brand-byline.svelte-2iqjbh *{
 }
 
 
-/* 3.27 error/toast typography aligned with brand subtitle */
 .setup-toast.svelte-2iqjbh,
 .setup-toast.svelte-2iqjbh span,
 .setup-toast-error.svelte-2iqjbh,
@@ -4354,7 +4248,6 @@ a.brand-byline.svelte-2iqjbh *{
 }
 
 
-/* 3.29 Proxied sites: compact expandable cards */
 .library-site.pk-glass{
   padding:0!important;
   overflow:hidden!important;
@@ -4503,7 +4396,6 @@ a.brand-byline.svelte-2iqjbh *{
 }
 
 
-/* 3.30 softer Proxied/Direct tabs and cleaner Proxied cards */
 .library-subtabs{
   padding:3px!important;
   gap:5px!important;
@@ -4541,7 +4433,6 @@ a.brand-byline.svelte-2iqjbh *{
     0 6px 16px rgba(0,0,0,.14)!important;
 }
 
-/* Remove the unnecessary dark rectangular layer behind site cards */
 .library-list{
   background:transparent!important;
   border:0!important;
@@ -4563,7 +4454,6 @@ a.brand-byline.svelte-2iqjbh *{
   box-shadow:none!important;
 }
 
-/* More refined expandable site cards */
 .library-site.pk-glass{
   background:
     radial-gradient(140% 190% at 18% -18%, rgba(255,255,255,.060), transparent 43%),
@@ -4638,7 +4528,6 @@ a.brand-byline.svelte-2iqjbh *{
 }
 
 
-/* 3.31 Proxied card cleanup: no bottom strip, no backdrop layer, lighter site names */
 .library-list{
   background:transparent!important;
   background-color:transparent!important;
@@ -4742,7 +4631,6 @@ a.brand-byline.svelte-2iqjbh *{
 }
 
 
-/* 3.32 import confirmation modal + import success state */
 .tool-btn.import-ok{
   color:rgba(190,255,210,.92)!important;
   border-color:rgba(110,210,140,.22)!important;
@@ -4861,7 +4749,6 @@ a.brand-byline.svelte-2iqjbh *{
   to{opacity:1; transform:translateY(0) scale(1);}
 }
 
-/* Make the whole collapsed card feel clickable */
 .library-site[data-library-site]{
   cursor:pointer!important;
 }
@@ -4873,7 +4760,6 @@ a.brand-byline.svelte-2iqjbh *{
 }
 
 
-/* 3.33 fixes: import modal render, exact host-copy hitbox, full IP list */
 .library-site-summary .library-origin,
 .library-origin-copy{
   display:inline-flex!important;
@@ -4886,7 +4772,6 @@ a.brand-byline.svelte-2iqjbh *{
   align-items:flex-start!important;
 }
 
-/* Main page IPs: show all, with styled vertical scroll when needed */
 .main-ip-list.ip-list.svelte-2iqjbh,
 .ip-list.main-ip-list{
   max-height:74px!important;
@@ -4914,7 +4799,6 @@ a.brand-byline.svelte-2iqjbh *{
   border:1px solid rgba(255,255,255,.07)!important;
 }
 
-/* Ensure custom import confirmation sits over the full library screen */
 .library-panel{
   position:relative!important;
 }
@@ -4924,7 +4808,6 @@ a.brand-byline.svelte-2iqjbh *{
 }
 
 
-/* 3.34 Overview stats: dark compact tile style */
 .library-stats span{
   border:1px solid rgba(255,255,255,.085)!important;
   background:
@@ -4944,7 +4827,6 @@ a.brand-byline.svelte-2iqjbh *{
 }
 
 
-/* 3.35 Proxied card host and route typography */
 .site-main{
   gap:5px!important;
   align-items:flex-start!important;
@@ -5051,7 +4933,6 @@ a.brand-byline.svelte-2iqjbh *{
 }
 
 
-/* 3.36 Overview Proxied typography refinement */
 .site-route-pill b{
   font-weight:690!important;
   color:rgba(245,245,247,.68)!important;
@@ -5069,7 +4950,6 @@ a.brand-byline.svelte-2iqjbh *{
   color:rgba(232,232,235,.34)!important;
 }
 
-/* Host name as a subtle outlined identity chip */
 .library-site-summary .library-origin{
   max-width:176px!important;
   padding:3px 7px 4px!important;
@@ -5104,7 +4984,6 @@ a.brand-byline.svelte-2iqjbh *{
   border-bottom:0!important;
 }
 
-/* Bring top overview stats closer to the same understated card language */
 .library-stats span{
   background:
     radial-gradient(120% 180% at 18% 0%, rgba(255,255,255,.050), transparent 42%),
@@ -5124,7 +5003,6 @@ a.brand-byline.svelte-2iqjbh *{
 }
 
 
-/* 3.37 Proxied host hover + subtitle-like host font + lighter stats */
 .library-site-summary .library-origin,
 .library-site-summary .library-origin:hover,
 .library-site-summary .library-origin:focus,
@@ -5161,7 +5039,6 @@ a.brand-byline.svelte-2iqjbh *{
 }
 
 
-/* 3.38 final authoritative host chip style for Overview → Sites → Proxied */
 .library-site.pk-glass .library-site-summary code.library-origin.copyable.library-origin-copy,
 .library-site.pk-glass .library-site-summary code.library-origin.copyable.library-origin-copy:hover,
 .library-site.pk-glass .library-site-summary code.library-origin.copyable.library-origin-copy:focus,
@@ -5257,13 +5134,11 @@ a.brand-byline.svelte-2iqjbh *{
   vertical-align:middle!important;
 }
 
-/* Keep copied state subtle: no border removal from generic copyable rules */
 .library-site .library-origin-copy.copied{
   border-color:rgba(255,255,255,.145)!important;
 }
 
 
-/* 3.40 Direct chip remove button: exact center + pointer cursor */
 .disabled-library .library-chip-wrap{
   position:relative!important;
   overflow:visible!important;
@@ -5324,7 +5199,6 @@ a.brand-byline.svelte-2iqjbh *{
 }
 
 
-/* 3.41 Overview stats: no hover glow, keep ips lowercase in markup */
 .library-stats span,
 .library-stats span:hover,
 .library-stats span:focus,
@@ -5341,7 +5215,6 @@ a.brand-byline.svelte-2iqjbh *{
   cursor:default!important;
 }
 
-/* 3.41 Direct remove button: geometric centered X, no wait cursor */
 .disabled-library .library-chip-wrap,
 .disabled-chip-list .library-chip-wrap,
 .library-chip-wrap{
@@ -5417,7 +5290,6 @@ a.brand-byline.svelte-2iqjbh *{
   transform:translate(-50%,-50%) rotate(-45deg)!important;
 }
 
-/* Never show wait cursor on delete chips, even during sync */
 html:has(.library-chip-remove),
 html:has(.library-chip-remove) .library-chip-remove,
 html:has(.library-chip-remove) .library-chip-remove *,
@@ -5434,7 +5306,6 @@ body:has(.library-chip-remove) .library-chip-remove *,
 }
 
 
-/* 3.42 cleaner empty states and Direct placeholder */
 .library-empty-inline,
 .library-muted{
   display:inline-flex!important;
@@ -5482,7 +5353,6 @@ body:has(.library-chip-remove) .library-chip-remove *,
 }
 
 
-/* 3.43 minimal empty states */
 .library-empty-inline,
 .library-muted{
   width:24px!important;
@@ -5521,7 +5391,6 @@ body:has(.library-chip-remove) .library-chip-remove *,
 }
 
 
-/* 3.44 Direct empty sections: collapsed, clean zero-state */
 .disabled-library .disabled-section.is-empty{
   min-height:40px!important;
   padding:10px 12px!important;
@@ -5577,7 +5446,6 @@ body:has(.library-chip-remove) .library-chip-remove *,
 }
 
 
-/* 3.45 Router Lists subtitle + unlimited vertical textarea resize */
 .router-list-field textarea,
 .router-lists-editor textarea,
 textarea#routerDomainsText,
@@ -5617,7 +5485,6 @@ textarea#routerSubnetsText::-webkit-scrollbar-thumb{
 }
 
 
-/* 3.46 Router Lists textarea real resize fix + shorter import dialog */
 .library-panel:has(#routerDomainsText),
 .library-panel:has(#routerSubnetsText){
   max-height:none!important;
@@ -5650,7 +5517,6 @@ textarea#routerSubnetsText{
   scrollbar-width:thin!important;
 }
 
-/* native resize handle must stay reachable */
 textarea#routerDomainsText::-webkit-resizer,
 textarea#routerSubnetsText::-webkit-resizer{
   display:block!important;
@@ -5672,7 +5538,6 @@ textarea#routerSubnetsText::-webkit-resizer{
 }
 
 
-/* 3.47 Main page origin/host and neutral IP/request chips */
 .origin-panel .origin-name.svelte-2iqjbh.copyable.origin-copy{
   box-sizing:border-box!important;
   width:auto!important;
@@ -5740,7 +5605,6 @@ textarea#routerSubnetsText::-webkit-resizer{
   vertical-align:middle!important;
 }
 
-/* Requests: remove redundant DOMAIN/HOST/IP label chips where old CSS generated them */
 .requests-inline-list .toggle-chip::before,
 .requests-inline-list .toggle-chip.domain::before,
 .requests-inline-list .toggle-chip.host::before,
@@ -5749,7 +5613,6 @@ textarea#routerSubnetsText::-webkit-resizer{
   display:none!important;
 }
 
-/* Neutralized main IPs and request chips: between main style and Overview soft chips */
 .origin-panel .toggle-chip,
 .requests-inline-list .toggle-chip,
 .main-ip-list .toggle-chip{
@@ -5805,7 +5668,6 @@ textarea#routerSubnetsText::-webkit-resizer{
 }
 
 
-/* 3.48 Main origin/host labels larger, active chips brighter, no request kind prefix */
 .origin-panel .origin-label.svelte-2iqjbh{
   font-size:9.2px!important;
   line-height:1!important;
@@ -5886,7 +5748,6 @@ textarea#routerSubnetsText::-webkit-resizer{
 }
 
 
-/* 3.49 Main: larger origin/host chips, smaller IP chips, remove request kind text */
 .origin-panel .origin-name.svelte-2iqjbh.copyable.origin-copy{
   height:24px!important;
   min-height:24px!important;
@@ -5917,7 +5778,6 @@ textarea#routerSubnetsText::-webkit-resizer{
   flex-basis:4.5px!important;
 }
 
-/* Some earlier rules add a kind label via generated content inside request chips. Kill all variants. */
 .requests-inline-list .request-chip::before,
 .requests-inline-list .request-chip::after,
 .requests-inline-list .request-chip.domain::before,
@@ -5944,14 +5804,12 @@ textarea#routerSubnetsText::-webkit-resizer{
   opacity:0!important;
 }
 
-/* If label is rendered as a child span by older CSS/markup, hide it only in Requests. */
 .requests-inline-list .request-chip > span:not(.toggle-dot):not(:has(code)),
 .origin-requests .request-chip > span:not(.toggle-dot):not(:has(code)){
   display:none!important;
 }
 
 
-/* 3.50 Fix Requests rendering, no lifted hover, stronger neutral active states */
 .requests-inline-list .request-item{
   display:inline-flex!important;
   visibility:visible!important;
@@ -5965,7 +5823,6 @@ textarea#routerSubnetsText::-webkit-resizer{
   opacity:1!important;
 }
 
-/* Remove generated kind labels from Requests without hiding real chip content */
 .requests-inline-list .request-item::before,
 .requests-inline-list .request-item::after,
 .requests-inline-list .request-item.domain::before,
@@ -5990,7 +5847,6 @@ textarea#routerSubnetsText::-webkit-resizer{
   display:none!important;
 }
 
-/* IPs and Requests hover like origin/host: highlight only, no lift */
 .main-ip-list .toggle-chip,
 .requests-inline-list .request-item{
   transition:border-color .16s ease, background .16s ease, box-shadow .16s ease, color .16s ease!important;
@@ -6013,14 +5869,12 @@ textarea#routerSubnetsText::-webkit-resizer{
   color:rgba(250,250,252,.94)!important;
 }
 
-/* Disable older generic translateY on these chips */
 .origin-panel .main-ip-list .toggle-chip:hover,
 .origin-panel .requests-inline-list .toggle-chip:hover,
 .origin-panel .requests-inline-list .request-item:hover{
   transform:none!important;
 }
 
-/* Keep active IP/request chips visually active, not muted */
 .main-ip-list .toggle-chip.on,
 .requests-inline-list .request-item.on,
 .origin-requests .request-item.on{
@@ -6036,14 +5890,12 @@ textarea#routerSubnetsText::-webkit-resizer{
   color:rgba(248,248,250,.90)!important;
 }
 
-/* Remove risky 3.49 child-span hiding effect for request chips */
 .requests-inline-list .request-item > span.toggle-dot,
 .origin-requests .request-item > span.toggle-dot{
   display:inline-block!important;
 }
 
 
-/* 3.51 Main IPs/Requests: slightly lighter than Origin/Host, same font */
 .main-ip-list .toggle-chip code,
 .requests-inline-list .request-item code,
 .origin-requests .request-item code,
@@ -6061,7 +5913,6 @@ textarea#routerSubnetsText::-webkit-resizer{
 }
 
 
-/* 3.52 Main IPs: same visual language as Origin/Host, no status dot */
 .main-ip-list .toggle-chip.main-ip,
 .main-ip-list .toggle-chip.main-ip.on,
 .main-ip-list .toggle-chip.main-ip:hover,
@@ -6155,11 +6006,6 @@ textarea#routerSubnetsText::-webkit-resizer{
 }
 
 
-/* 3.64 — Origin/Host toggle chips in main view
-   The Origin and Host rows now use toggle chips that integrate with the
-   global exceptions list, mirroring IP-chip behaviour, while preserving the
-   wave-sync animation and adding a dedicated copy button so click-to-copy is
-   not lost. */
 .origin-chip-wrap{
   display:inline-flex;
   align-items:center;
@@ -6224,7 +6070,6 @@ textarea#routerSubnetsText::-webkit-resizer{
   flex:0 0 7px;
 }
 
-/* Dedicated copy button next to origin/host chip */
 .origin-copy-btn{
   flex:0 0 auto;
   width:22px;
@@ -6253,7 +6098,6 @@ textarea#routerSubnetsText::-webkit-resizer{
   background:rgba(122,217,166,.10);
 }
 
-/* Keep origin-row layout coherent with new chip */
 .origin-row.svelte-2iqjbh{
   align-items:center!important;
 }
@@ -6261,13 +6105,6 @@ textarea#routerSubnetsText::-webkit-resizer{
   align-self:center;
 }
 
-/* Wave animation already defined globally for .toggle-chip.is-syncing-entry —
-   the origin/host chips inherit it because they keep the .toggle-chip class. */
-
-
-/* 3.64 — Library overview: reflect global-exception state for the
-   site's origin so the Proxied list visually answers "is this site
-   actually proxied right now?". */
 .library-origin-row{
   display:inline-flex;
   align-items:center;
@@ -6338,7 +6175,6 @@ textarea#routerSubnetsText::-webkit-resizer{
   white-space:nowrap;
 }
 
-/* Sync wave on library origin toggle reuses the same keyframes */
 .library-origin-toggle.is-syncing-entry{
   position:relative;
   overflow:hidden;
@@ -6355,7 +6191,6 @@ textarea#routerSubnetsText::-webkit-resizer{
   pointer-events:none;
 }
 
-/* Small copy button next to the library origin toggle */
 .library-origin-copy-btn{
   flex:0 0 auto;
   width:20px;
@@ -6384,9 +6219,6 @@ textarea#routerSubnetsText::-webkit-resizer{
   background:rgba(122,217,166,.10);
 }
 
-/* When the site's origin is in global exceptions, fade the whole card and
-   add a small "EXCEPT" flag next to the route pill so the user immediately
-   sees that the entry is effectively bypassed. */
 .library-site.origin-globally-disabled{
   filter:saturate(.78);
 }
@@ -6418,7 +6250,6 @@ textarea#routerSubnetsText::-webkit-resizer{
   border:1px solid rgba(255,170,90,.30);
 }
 
-/* Make sure the library summary grid still fits the new origin row gracefully */
 .library-site-summary .site-main{
   min-width:0;
   overflow:hidden;
@@ -6427,25 +6258,12 @@ textarea#routerSubnetsText::-webkit-resizer{
   max-width:100%;
 }
 
-/* Wait cursor while origin toggle syncs (covered by global rule too) */
 body:has(.library-origin-toggle.is-syncing-entry),
 body:has(.toggle-chip.origin-chip.is-syncing-entry){
   cursor:wait!important;
 }
 
 
-/* ============================================================
-   3.64.1 — Fixes for: IP off-state greying, origin/host visual
-   style (IP-like, no toggle-dot, width-of-text), and wave
-   animation on ALL request chips.
-   These rules must come last so they override the earlier
-   `!important` blocks.
-   ============================================================ */
-
-/* (1) IPs in the main panel should grey out when in global
-   exceptions. Earlier 3.52 rule pinned opacity/filter to 1/none
-   on every .main-ip chip regardless of state — restore the off
-   contrast here. */
 .main-ip-list .toggle-chip.main-ip.off,
 .origin-panel .main-ip-list .toggle-chip.main-ip.off{
   opacity:.48!important;
@@ -6479,12 +6297,6 @@ body:has(.toggle-chip.origin-chip.is-syncing-entry){
 }
 
 
-/* (2) Origin and Host chips — restyle to match the IP-chip
-   language: compact, fit-the-text width, no zelёная toggle-dot,
-   same border-radius/typography. Replaces the bulky .origin-chip
-   styling from 3.64. */
-
-/* Wrapper around chip + copy button: tight inline-flex */
 .origin-chip-wrap{
   display:inline-flex!important;
   align-items:center!important;
@@ -6494,7 +6306,6 @@ body:has(.toggle-chip.origin-chip.is-syncing-entry){
   flex:0 1 auto!important;
 }
 
-/* Hide the toggle-dot for origin & host chips (mirrors .main-ip behaviour) */
 .toggle-chip.origin-chip > .toggle-dot,
 .toggle-chip.host-chip > .toggle-dot,
 .origin-panel .toggle-chip.origin-chip > .toggle-dot,
@@ -6509,7 +6320,6 @@ body:has(.toggle-chip.origin-chip.is-syncing-entry){
   opacity:0!important;
 }
 
-/* Active (on) state: shaped exactly like the .main-ip IP chip */
 .toggle-chip.origin-chip,
 .toggle-chip.origin-chip.on,
 .toggle-chip.host-chip,
@@ -6549,7 +6359,6 @@ body:has(.toggle-chip.origin-chip.is-syncing-entry){
   filter:none!important;
 }
 
-/* Host is a touch narrower / dimmer than origin for hierarchy */
 .toggle-chip.host-chip,
 .toggle-chip.host-chip.on,
 .origin-panel .toggle-chip.host-chip,
@@ -6564,7 +6373,6 @@ body:has(.toggle-chip.origin-chip.is-syncing-entry){
     linear-gradient(180deg, rgba(36,36,38,.48), rgba(20,20,21,.56))!important;
 }
 
-/* Hover (active state) */
 .toggle-chip.origin-chip:hover,
 .toggle-chip.origin-chip:hover:not(:disabled),
 .toggle-chip.host-chip:hover,
@@ -6582,7 +6390,6 @@ body:has(.toggle-chip.origin-chip.is-syncing-entry){
   transform:none!important;
 }
 
-/* Off (in global exceptions): same greyed treatment as IPs */
 .toggle-chip.origin-chip.off,
 .toggle-chip.host-chip.off,
 .origin-panel .toggle-chip.origin-chip.off,
@@ -6619,7 +6426,6 @@ body:has(.toggle-chip.origin-chip.is-syncing-entry){
   text-decoration-color:transparent!important;
 }
 
-/* Typography: origin slightly larger, host like IP */
 .toggle-chip.origin-chip code,
 .toggle-chip.origin-chip.on code,
 .origin-panel .toggle-chip.origin-chip code,
@@ -6674,21 +6480,12 @@ body:has(.toggle-chip.origin-chip.is-syncing-entry){
   vertical-align:middle!important;
 }
 
-/* Origin row layout stays baseline-aligned with new chip height */
 .origin-panel .origin-row.svelte-2iqjbh,
 .origin-panel .origin-row.sub.svelte-2iqjbh{
   align-items:center!important;
   min-height:26px!important;
 }
 
-
-/* (3) Wave-of-sync animation MUST work on every request chip.
-   Earlier rules at 3.50/3.51 killed all ::before/::after content
-   on .request-item — that also clobbered the sync wave overlay.
-   Restore the wave by allowing ::after specifically when the
-   chip is in syncing state. Selector specificity beats the
-   `content:none !important` kill-switch because we re-specify
-   the same pseudo-element with !important and a longer chain. */
 
 .requests-inline-list .toggle-chip.is-syncing-entry,
 .requests-inline-list .request-item.is-syncing-entry,
@@ -6728,7 +6525,6 @@ body:has(.toggle-chip.origin-chip.is-syncing-entry){
   z-index:2!important;
 }
 
-/* Make sure the wave also doesn't get clipped by inner code/spans */
 .requests-inline-list .toggle-chip.is-syncing-entry > *,
 .requests-inline-list .request-item.is-syncing-entry > *,
 .main-ip-list .toggle-chip.is-syncing-entry > *,
@@ -6739,7 +6535,6 @@ body:has(.toggle-chip.origin-chip.is-syncing-entry){
 }
 
 
-/* 3.76 Overview proxied card title rollback: compact copy-only host title */
 .library-origin-row{
   display:inline-flex!important;
   align-items:center!important;
@@ -6796,7 +6591,6 @@ body:has(.toggle-chip.origin-chip.is-syncing-entry){
   color:rgba(226,226,228,.70)!important;
 }
 
-/* 3.76 main/global chip sync wave: real DOM layer on clicked chip, no immediate off/on flip */
 .toggle-chip.entry-sync-live{
   position:relative!important;
   overflow:hidden!important;
@@ -6839,7 +6633,6 @@ body:has(.toggle-chip.origin-chip.is-syncing-entry){
   display:none!important;
 }
 
-/* disabled is gray only, never struck through */
 .toggle-chip.off,
 .toggle-chip.off code,
 .library-chip.route-toggle.off,
@@ -6870,8 +6663,6 @@ body:has(.toggle-chip.origin-chip.is-syncing-entry){
 }
 
 
-/* 3.77 Fix main chip sync wave.
-   Service-worker console messages no longer re-render during sync; this layer remains alive. */
 button.toggle-chip.entry-sync-live{
   position:relative!important;
   overflow:hidden!important;
@@ -6916,7 +6707,6 @@ button.toggle-chip.entry-sync-live::after{
   display:none!important;
 }
 
-/* Disabled chips: gray only, no strike-through. Put this after older 3.52/3.64 rules. */
 .origin-panel button.toggle-chip.off,
 .origin-panel button.toggle-chip.off code,
 .main-ip-list button.toggle-chip.main-ip.off,
@@ -6949,7 +6739,6 @@ button.toggle-chip.entry-sync-live::after{
 }
 
 
-/* 3.78 absolutely no strike-through on disabled main chips */
 .main-ip-list .toggle-chip.main-ip.off,
 .main-ip-list .toggle-chip.main-ip.off *,
 .origin-panel .toggle-chip.off,
@@ -6965,7 +6754,6 @@ button.toggle-chip.entry-sync-live::after{
   text-decoration-thickness:0!important;
 }
 
-/* 3.78 body-level wave overlay over the clicked chip */
 .entry-sync-screen-wave{
   position:fixed!important;
   z-index:2147483647!important;
@@ -7000,7 +6788,6 @@ button.toggle-chip.entry-sync-live::after{
   to{transform:translate3d(155%,0,0) skewX(-12deg);}
 }
 
-/* Inline fallback remains available but cannot add decorations. */
 button.toggle-chip.entry-sync-live,
 button.toggle-chip.entry-sync-live *{
   text-decoration:none!important;
@@ -7008,9 +6795,6 @@ button.toggle-chip.entry-sync-live *{
 }
 
 
-/* 3.82 Subtle global sync lock.
-   During router/library/control synchronization the popup is softly dimmed
-   and a transparent shield blocks clicks until sync finishes. */
 .popup.pm-sync-locked{
   position:relative!important;
 }
@@ -7042,7 +6826,6 @@ html.pm-sync-locked .entry-sync-screen-wave{
 }
 
 
-/* 3.83 lighter sync film: barely visible, only enough to show locked state */
 .popup.pm-sync-locked > *:not(.entry-sync-screen-wave){
   opacity:.94!important;
   filter:saturate(.96) brightness(.985)!important;
@@ -7068,7 +6851,6 @@ html.pm-sync-locked [role="button"]{
 }
 
 
-/* 3.84 sync film: no blur, slightly more visible dimming */
 .popup.pm-sync-locked > *:not(.entry-sync-screen-wave){
   opacity:.90!important;
   filter:saturate(.94) brightness(.96)!important;
@@ -7086,7 +6868,6 @@ html.pm-sync-locked [role="button"]{
 }
 
 
-/* 3.85 cursor-bound sync indicator */
 .pm-sync-cursor-badge{
   position:fixed!important;
   left:0!important;
@@ -7140,7 +6921,6 @@ html.pm-sync-locked{
 }
 
 
-/* 3.86 Replace native cursor with the animated sync indicator during sync */
 html.pm-sync-locked,
 html.pm-sync-locked *,
 html.pm-sync-locked body,
@@ -7156,8 +6936,6 @@ html.pm-sync-locked .popup{
 }
 
 
-/* 3.87 Cursor sync indicator: no top-left fly-in.
-   Position is controlled only by JS transform; animation changes opacity only. */
 .pm-sync-cursor-badge{
   animation:pm-sync-cursor-pop .10s ease-out both!important;
 }
