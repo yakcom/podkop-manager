@@ -458,7 +458,8 @@ function normalizeRouterErrorMessage(input, status = 0, action = '') {
   const low = text.toLowerCase();
   const normalizedAction = String(action || '').trim();
 
-  if (status === 404 || low.includes('404 not found') || low.includes('not found')) return 'OpenWrt API is not installed';
+  if (low.includes('cannot set property message') && low.includes('only a getter')) return 'OpenWrt not found';
+  if (status === 404 || low.includes('404 not found') || low.includes('not found')) return 'API is not installed';
   if (status === 401 || status === 403 || low.includes('invalid token') || low.includes('forbidden')) return 'Invalid token';
   if (low.includes('token file') || low.includes('uci command not found') || low.includes('uci config podkop not found')) return 'Router API is not configured';
   if (normalizedAction === 'restartPodkop' || low.includes('restart failed') || low.includes('podkop restart failed')) return 'Podkop restart failed';
@@ -469,9 +470,9 @@ function normalizeRouterErrorMessage(input, status = 0, action = '') {
 }
 
 function normalizeRouterError(error, status = 0, action = '') {
-  const e = error instanceof Error ? error : new Error(String(error || 'OpenWrt sync failed'));
-  e.message = normalizeRouterErrorMessage(e.message, status, action);
-  e.code = e.code || 'router_error';
+  const source = error instanceof Error ? error : new Error(String(error || 'OpenWrt sync failed'));
+  const e = new Error(normalizeRouterErrorMessage(source.message, status, action));
+  e.code = source.code || 'router_error';
   return e;
 }
 

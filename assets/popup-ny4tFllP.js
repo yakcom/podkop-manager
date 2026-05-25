@@ -69,7 +69,8 @@ function syncLegacyUiState() {
 function normalizeUiError(message) {
   const text = String(message || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
   const low = text.toLowerCase();
-  if (low.includes('404') || low.includes('not found')) return 'OpenWrt API is not installed';
+  if (low.includes('cannot set property message') && low.includes('only a getter')) return 'OpenWrt not found';
+  if (low.includes('404') || low.includes('not found')) return 'API is not installed';
   if (low.includes('invalid token') || low.includes('forbidden')) return 'Invalid token';
   if (low.includes('token file') || low.includes('uci command') || low.includes('uci config podkop')) return 'Router API is not configured';
   if (low.includes('podkop restart failed') || low.includes('restart failed')) return 'Podkop restart failed';
