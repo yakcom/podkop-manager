@@ -970,6 +970,16 @@ function bindSetupEvents() {
     });
   });
   document.getElementById('routerToken')?.addEventListener('input', e => { form.routerToken = e.target.value; updateSetupButtons(); });
+  document.querySelectorAll('.gateway-part, #routerToken').forEach(input => {
+    input.addEventListener('keydown', e => {
+      if (e.key !== 'Enter' || busy) return;
+      updateFormFromDom();
+      updateSetupButtons();
+      if (document.getElementById('saveSetup')?.disabled) return;
+      e.preventDefault();
+      saveSetup();
+    });
+  });
   document.getElementById('saveSetup')?.addEventListener('click', () => saveSetup());
 }
 
