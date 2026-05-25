@@ -391,6 +391,18 @@ function analyzeUrl(href) {
   }
   return { isHttpScheme, protocol: url.protocol, asciiHostname, origin, isIp };
 }
+
+function scheduleActiveTabHardReload() {
+  setTimeout(async () => {
+    try {
+      const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+      if (typeof tab?.id !== 'number') return;
+      if (!analyzeUrl(tab.url || '').isHttpScheme) return;
+      await chrome.tabs.reload(tab.id, { bypassCache: true });
+    } catch (_) {}
+  }, 250);
+}
+
 function uniqueClean(items) { return [...new Set((items || []).map(x => String(x).trim().toLowerCase()).filter(Boolean))]; }
 
 async function getDnsCache() { const raw = await chrome.storage.local.get(keys.dns); return raw[keys.dns] || {}; }
@@ -586,7 +598,8 @@ async function saveRouterLists(domainsText, subnetsText) {
   const lists = await getRouterLists();
   const states = await reconcileLocalLibraryWithRouterLists(lists);
   await log.success('router', `router lists saved: ${lists.rawDomains.length} domains, ${lists.rawSubnets.length} subnets`);
-  return { ...lists, library: buildLibraryView(states) };
+  scheduleActiveTabHardReload();
+  return { ...lists, library: buildLibraryView(states), replaced: true };
 }
 
 async function getRouterControlStatus() {
@@ -933,6 +946,7 @@ async function commitOriginStates(nextStates, context = 'sync', origin = 'librar
     await log.success('router', res.message || 'Podkop lists replaced');
 
     await chrome.storage.local.set({ [keys.origins]: nextStates });
+    scheduleActiveTabHardReload();
     return { ok: true, addedDomains: dDiff.add, addedIps: ipDiff.add, removedDomains: dDiff.remove, removedIps: ipDiff.remove, aggregate: afterAgg, replaced: true };
   });
 }
