@@ -804,7 +804,7 @@ async function testRouterCredentials(url, token) {
   body.set('token', token);
   body.set('action', 'test');
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 12000);
+  const timeout = setTimeout(() => controller.abort(), 4000);
   let res;
   let text = '';
   try {
