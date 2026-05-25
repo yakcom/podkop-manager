@@ -3,7 +3,7 @@
 
 # Podkop Manager
 
-**Manage Podkop routing on OpenWrt, site by site**
+**Podkop routing from your browser**
 
 </div>
 
@@ -13,11 +13,9 @@
 
 ## Overview
 
-**Podkop Manager** lets you choose which sites go through **Podkop** and which stay direct, right from the current browser tab.
+**Podkop Manager** is a browser extension for managing **Podkop** routing on OpenWrt from the current page.
 
-It detects the active site, related request domains, and public IPv4 addresses, then syncs your choices to Podkop lists on OpenWrt.
-
-The **OpenWrt router API** is a small local, token-protected endpoint installed on the router. The extension uses it to check the connection and update Podkop domain/IP lists.
+Route the current site through Podkop, keep it direct, or include related domains and public IPv4 addresses when needed. Podkop Manager keeps router lists in sync so routing stays clear and easy to adjust.
 
 ---
 <p align="center">
@@ -25,11 +23,11 @@ The **OpenWrt router API** is a small local, token-protected endpoint installed 
   <img src="https://raw.githubusercontent.com/yakcom/podkop-manager/main/icons/screen_5.png" width="320">
 </p>
 
----
-
 ## Quick Start
 
 ### 1. Install the OpenWrt router API
+
+The install script adds a token-protected API to your router. It only checks status and updates Podkop domain/IP lists; it does not replace Podkop or change unrelated OpenWrt settings.
 
 SSH into your router and run:
 
@@ -85,7 +83,7 @@ This removes only the API endpoint, token, and runtime lock. Podkop and its UCI 
 
 ## Features
 
-### Tab-aware routing
+### Smart site detection
 
 Podkop Manager can use the active tab's origin, hostname, related request domains, public IPv4 addresses, and manually added entries.
 
@@ -93,9 +91,9 @@ Podkop Manager can use the active tab's origin, hostname, related request domain
 
 | Mode | Description |
 |---|---|
-| **Direct** | Exclude from proxy routing. |
+| **Direct** | Keep entries outside proxy routing. |
 | **Base** | Route the core site entries. |
-| **Deep** | Route the site with related request domains/IPs. |
+| **Deep** | Route the site together with related domains/IPs. |
 
 ### Routing scope
 
@@ -105,8 +103,6 @@ Podkop Manager can use the active tab's origin, hostname, related request domain
 | **ips** | Public IPv4 entries only. |
 | **domains + ips** | Domains and public IPv4 entries. |
 
-### Overview and router lists
+### Library and router lists
 
-The **Overview** screen shows proxied sites, direct exclusions, counters, expandable site cards, manual entries, import/export, and the router list editor.
-
-Router lists can be viewed and edited directly for verification, recovery, and manual control.
+The **Overview** screen shows routed sites, direct exclusions, counters, expandable site cards, manual entries, import/export, and the router list editor for verification or recovery.
